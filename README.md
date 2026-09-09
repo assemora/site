@@ -55,6 +55,18 @@ ever sign in as, and the image refuses to start for the same reason.
 It goes through `auth.users.password` on the Command Bus, so it is hashed by the handler
 and leaves no revision behind.
 
+### Changing the design after it is live
+
+The seed is the site's first author, not its only one. Once it has run the page is
+content, so a deploy does not touch it: section spacing, a card's tone and the theme
+tokens live in the database, and changing them here changes nothing that is already
+written.
+
+While the site is still exactly what the seed wrote, `ASSEMORA_RESEED=1 pnpm seed`
+deletes every page — translations included — and writes them again. Once anybody has
+edited anything, that flag destroys their work: the change belongs in Studio, or in a
+migration that knows what it is preserving.
+
 ## Deploying
 
 `Dockerfile` builds it. The framework arrives compiled from npm, so the image installs

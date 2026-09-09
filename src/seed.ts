@@ -23,6 +23,7 @@ import { realpathSync } from 'node:fs'
 
 import { hashPassword, Permission, Role, RolePermission, User, UserRole } from '@assemora/auth'
 import type { Application } from '@assemora/core'
+import { Page } from '@assemora/pages'
 import type { BlockDesignPatch } from '@assemora/schema'
 
 import { createApp } from './app.ts'
@@ -605,6 +606,40 @@ export const ensureAdministratorPassword = async (
   })
 }
 
+/** Actor, as every write below needs one. */
+type Actor = { readonly type: 'user'; readonly id: string }
+
+/**
+ * The site itself: the English page, then the same tree said twice more.
+ *
+ * Separate from `seed` because it is the half that can be written again. Creating an
+ * administrator is a thing you do once; writing the page is a thing a reset does over.
+ */
+const writeSite = async (app: Application, actor: Actor): Promise<void> => {
+  await app.run({ source: 'internal', actor }, async () => {
+    await brand(app)
+
+    const { page, placed } = await build(app, COPY.en)
+
+    await app.commands.execute('pages.publish', { id: page })
+
+    for (const locale of TRANSLATIONS) {
+      const made = (await app.commands.execute('pages.translate', {
+        id: page,
+        locale,
+      })) as { id: string }
+
+      // In the language of the translation, because every read inside these commands
+      // is scoped to the language of the operation (SPEC.md §131) — and a read scoped
+      // to English would find the English page, which is the one not being edited.
+      await app.run({ source: 'internal', actor, locale }, async () => {
+        await apply(app, made.id, placed, COPY[locale])
+        await app.commands.execute('pages.publish', { id: made.id })
+      })
+    }
+  })
+}
+
 export const seed = async (app: Application): Promise<void> => {
   if ((await User.count()) > 0) return
 
@@ -623,34 +658,56 @@ export const seed = async (app: Application): Promise<void> => {
   await RolePermission.create({ roleId: role.id, permissionId: everything.id })
   await UserRole.create({ userId: admin.id, roleId: role.id })
 
+  await writeSite(app, { type: 'user', id: admin.id })
+
+  // Where the password came from, rather than where it sometimes goes: saying `.env`
+  // when the environment supplied it sends whoever reads this to an empty file.
+  const fromEnvironment = process.env.ASSEMORA_SEED_PASSWORD
+
+  console.log(
+    `seeded ${ADMIN} — its password is ${
+      fromEnvironment === undefined || fromEnvironment === ''
+        ? 'in .env, as ASSEMORA_SEED_PASSWORD'
+        : 'the one ASSEMORA_SEED_PASSWORD names'
+    }`,
+  )
+}
+
+/**
+ * Throws the site away and writes it again.
+ *
+ * The seed is the site's first author, not its only one: once it has run, the page is
+ * content, and an editor's change to it outweighs this file's opinion. So nothing here
+ * re-runs on its own — `seed` returns the moment a user exists.
+ *
+ * This is the deliberate exception, and it is behind a flag because it **deletes every
+ * page, translations included**. It exists for the window where the site is still
+ * exactly what the seed wrote and a change to the design lives in the block props
+ * rather than in the stylesheet — section spacing, a card's tone, a theme token. Those
+ * are content, and a deploy does not touch content. Run it while nobody has edited
+ * anything; after that, the change belongs in Studio or in a migration that knows what
+ * it is preserving.
+ */
+export const reseed = async (app: Application): Promise<void> => {
+  const admin = await User.where('email', ADMIN).first()
+
+  if (admin === null) return
+
   const actor = { type: 'user', id: admin.id } as const
 
-  await app.run({ source: 'internal', actor }, async () => {
-    await brand(app)
+  const pages = await app.run({ source: 'internal', actor }, async () => {
+    const existing = await Page.allLocales().get()
 
-    const { page, placed } = await build(app, COPY.en)
-
-    await app.commands.execute('pages.publish', { id: page })
-
-    for (const locale of TRANSLATIONS) {
-      const made = (await app.commands.execute('pages.translate', {
-        id: page,
-        locale,
-      })) as {
-        id: string
-      }
-
-      // In the language of the translation, because every read inside these commands
-      // is scoped to the language of the operation (SPEC.md §131) — and a read scoped
-      // to English would find the English page, which is the one not being edited.
-      await app.run({ source: 'internal', actor, locale }, async () => {
-        await apply(app, made.id, placed, COPY[locale])
-        await app.commands.execute('pages.publish', { id: made.id })
-      })
+    for (const page of existing) {
+      await app.commands.execute('pages.delete', { id: page.id })
     }
+
+    return existing.length
   })
 
-  console.log(`seeded ${ADMIN} — its password is in .env, as ASSEMORA_SEED_PASSWORD`)
+  await writeSite(app, actor)
+
+  console.log(`reseed: replaced ${pages} pages`)
 }
 
 /**
@@ -682,5 +739,8 @@ if (started !== undefined && realpathSync(started) === import.meta.filename) {
   await app.boot()
   await seed(app.app)
   await ensureAdministratorPassword(app.app, declared)
+
+  if (process.env.ASSEMORA_RESEED === '1') await reseed(app.app)
+
   await app.shutdown()
 }
