@@ -1,0 +1,930 @@
+/*
+ * This site's own rules, and only those (SPEC.md §62, ADR-0024).
+ *
+ * The tokens are not here and were never this file's to write: they are served by the
+ * application at `/api/theme.css`, which `index.html` links. They come from the theme
+ * document — a person edits it in Studio's Design section and an agent proposes
+ * changes to it through `theme.update` — and `src/seed.ts` is where this site's
+ * palette is set, like any other change.
+ *
+ * What is left is what a theme should never own: what a hero, a card, a diff and a
+ * comparison table look like here. It is unlayered and the generated stylesheet is
+ * inside `@layer assemora`, so everything below wins without counting selectors.
+ */
+
+/*
+ * The faces, from this origin.
+ *
+ * `style-src 'self'` is the policy the framework sends (SPEC.md §85), so a font CDN
+ * would be blocked — and self-hosting tells no third party who is reading. All three
+ * are OFL, which is what makes shipping them a licence rather than a liberty.
+ *
+ * Manrope is here because Space Grotesk has no Cyrillic, and this site is written in
+ * three languages, two of them Cyrillic. Without it `system-ui` catches those two —
+ * SF Pro, Segoe or Roboto depending on who is looking — so the Ukrainian site would
+ * have no typeface of its own and a different one per visitor. Each face declares the
+ * range it covers, so a browser fetches only what the page it drew actually needs:
+ * an English reader never downloads the Cyrillic files.
+ */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Manrope;
+  src: url("/fonts/manrope-cyrillic.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-cyrillic.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*
+ * The column every section sits in.
+ *
+ * `container` and `width` are two different controls (SPEC.md §61): `width` caps the
+ * block's own child, and `container` hands the block a width to use — which is what
+ * this consumes. Neither carries side padding, and 24px of it is what stops a heading
+ * touching the glass on a 1200px window, so it is declared once here rather than by
+ * every block.
+ */
+main > .assemora-design > * {
+  max-width: var(--container, var(--width-wide));
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* --- the shell ------------------------------------------------------------- */
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner,
+.footer-inner {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.nav-inner {
+  height: 64px;
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: var(--weight-bold);
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+/* The mark: two legs and a crossbar, which is an A that is also an easel. */
+.mark {
+  position: relative;
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.mark span {
+  position: absolute;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+.mark span:nth-child(1) {
+  left: 14%;
+  bottom: 8%;
+  width: 16%;
+  height: 80%;
+  transform-origin: bottom center;
+  transform: rotate(14deg);
+}
+
+.mark span:nth-child(2) {
+  right: 14%;
+  bottom: 8%;
+  width: 16%;
+  height: 80%;
+  transform-origin: bottom center;
+  transform: rotate(-14deg);
+}
+
+.mark span:nth-child(3) {
+  left: 26%;
+  bottom: 25%;
+  width: 48%;
+  height: 15%;
+  background: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.languages {
+  display: flex;
+  gap: 2px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  padding: 3px;
+}
+
+.languages a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  color: var(--ink-mute);
+}
+
+.languages a[aria-current="true"] {
+  background: var(--ink);
+  color: var(--panel);
+}
+
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.footer-inner {
+  min-height: 88px;
+  flex-wrap: wrap;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* --- shared idioms --------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--space-sm);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.75rem, 5.6vw, 5.25rem);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-display);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.03em;
+  max-width: 20ch;
+}
+
+h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin: var(--space-sm) 0 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-mute);
+  margin: var(--space-sm) 0 0;
+}
+
+.meta span + span::before {
+  content: "·";
+  margin-right: var(--space-xs);
+}
+
+.caption {
+  font-size: var(--text-sm);
+  color: var(--ink-mute);
+  margin: var(--space-sm) 0 0;
+  max-width: 72ch;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+.code-block {
+  margin: var(--space-md) 0 0;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--ink);
+  color: var(--panel);
+  font-size: 13.5px;
+  line-height: var(--leading-relaxed);
+  overflow-x: auto;
+}
+
+.code-block-dark {
+  background: var(--ink-deep);
+  border: 1px solid var(--line-on-ink);
+}
+
+.terminal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--ink);
+  color: var(--panel);
+  border-radius: var(--radius-sm);
+  padding: 10px 10px 10px 14px;
+  font-size: 13.5px;
+}
+
+.terminal-prompt {
+  color: var(--mint);
+}
+
+.terminal code {
+  color: var(--panel);
+}
+
+.copy {
+  border: 0;
+  background: var(--line-on-ink);
+  color: var(--panel);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.copy:hover {
+  background: var(--accent);
+}
+
+.button-accent,
+.button-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-full);
+  padding: 11px 20px;
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.button-accent {
+  background: var(--accent);
+  color: var(--panel);
+}
+
+.button-accent:hover {
+  background: var(--accent-deep);
+}
+
+.button-quiet {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+.button-accent[disabled],
+.button-quiet[disabled] {
+  opacity: 0.4;
+}
+
+.link-arrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.link-arrow:hover {
+  color: var(--accent);
+}
+
+.missing {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink-mute);
+  padding: var(--space-md);
+}
+
+/* --- hero ------------------------------------------------------------------ */
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+/* --- proposals ------------------------------------------------------------- */
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -30px rgb(26 26 26 / 25%);
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border-bottom: 1px solid var(--hairline);
+  font-size: var(--text-sm);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+}
+
+.pill {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: var(--paper);
+  color: var(--ink-mute);
+}
+
+.pill[data-stage="pending"] {
+  background: var(--amber-tint);
+  color: var(--amber-text);
+}
+
+.pill[data-stage="applied"] {
+  background: var(--green-tint);
+  color: var(--accent-deep);
+}
+
+.pill[data-stage="rejected"] {
+  background: var(--red-tint);
+  color: var(--red);
+}
+
+.panel-body {
+  padding: var(--space-lg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: var(--leading-relaxed);
+}
+
+.panel-body p {
+  margin: 0 0 6px;
+}
+
+.code-comment {
+  color: var(--ink-mute);
+}
+
+.code-call {
+  color: var(--ink);
+}
+
+.code-step,
+.code-waiting {
+  color: var(--ink-soft);
+}
+
+.diff {
+  margin: var(--space-sm) 0;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.diff-label {
+  padding: 8px 12px;
+  background: var(--paper);
+  color: var(--ink-mute);
+  margin: 0;
+}
+
+.diff-line {
+  padding: 6px 12px;
+  margin: 0;
+}
+
+.diff-removed {
+  background: var(--red-tint);
+  color: var(--red);
+}
+
+.diff-added {
+  background: var(--green-tint);
+  color: var(--accent-deep);
+}
+
+.outcome-applied {
+  color: var(--accent-deep);
+}
+
+.outcome-rejected {
+  color: var(--red);
+}
+
+.panel-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border-top: 1px solid var(--hairline);
+}
+
+/* --- cards ----------------------------------------------------------------- */
+
+.card-grid {
+  display: grid;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}
+
+/* A count, not a minimum width: `auto-fit` put four two-column cards into a row of
+   three at 1280px, which is not the shape the section was designed as. */
+.card-grid[data-columns="two"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-grid[data-columns="three"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  background: var(--panel);
+}
+
+.card p {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--ink-soft);
+  margin: var(--space-xs) 0 0;
+}
+
+.badge {
+  margin-left: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.06em;
+  padding: 3px 7px;
+  border-radius: var(--radius-full);
+  background: var(--green-tint);
+  color: var(--accent-deep);
+  vertical-align: middle;
+}
+
+.card-code {
+  margin-top: var(--space-sm);
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--ink);
+  font-size: 12.5px;
+  line-height: var(--leading-relaxed);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-x: auto;
+}
+
+.card-code .code-comment {
+  color: var(--ink-mute);
+}
+
+.card-code code {
+  color: var(--mint);
+  white-space: pre;
+}
+
+/* Counting is the card's own, so a section that numbers nothing looks as it did. */
+.card-grid[data-numbered="yes"] {
+  counter-reset: step;
+}
+
+.card-grid[data-numbered="yes"] .card {
+  counter-increment: step;
+}
+
+.card-grid[data-numbered="yes"] .card::before {
+  content: "0" counter(step);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: var(--space-xs);
+}
+
+/* A row of cards on ink: the section's background is a token, so only the parts that
+   sit *on* it are restated here. */
+.cards[data-tone="ink"] h2,
+.cards[data-tone="ink"] .card h3 {
+  color: var(--panel);
+}
+
+.cards[data-tone="ink"] .card {
+  background: transparent;
+  border-color: var(--line-on-ink);
+}
+
+.cards[data-tone="ink"] .card p,
+.cards[data-tone="ink"] .lead {
+  color: var(--ink-mute);
+}
+
+/* --- declaration ----------------------------------------------------------- */
+
+.outcomes {
+  list-style: none;
+  margin: var(--space-xl) 0 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.outcomes li {
+  display: grid;
+  grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  gap: var(--space-md);
+  padding: 14px var(--space-lg);
+  align-items: baseline;
+}
+
+.outcomes li + li {
+  border-top: 1px solid var(--hairline);
+}
+
+.outcomes code {
+  font-size: 13px;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.outcomes span {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* --- mutation -------------------------------------------------------------- */
+
+.mutation h2,
+.showcase[data-tone="ink"] h2 {
+  color: var(--panel);
+}
+
+.mutation h2 {
+  color: var(--panel);
+}
+
+.mutation .lead {
+  color: var(--ink-mute);
+}
+
+.pipeline {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: var(--space-xl) 0 0;
+  padding: 0;
+}
+
+.pipeline li {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-on-ink);
+  border-radius: var(--radius-full);
+  color: var(--panel);
+}
+
+.pipeline li:first-child {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.pipeline li + li::before {
+  content: "→";
+  color: var(--ink-mute);
+  margin-right: 12px;
+  margin-left: -4px;
+}
+
+/* --- showcase -------------------------------------------------------------- */
+
+.address {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-mute);
+  margin: var(--space-md) 0 0;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: var(--space-lg);
+  padding: 4px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+.tabs button {
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--ink-mute);
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+}
+
+.tabs button[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--panel);
+}
+
+.shot {
+  margin: 0;
+}
+
+.shots {
+  margin-top: var(--space-sm);
+}
+
+/* One tab at a time. `maxChildren` is 6, so six rules is the whole of it. */
+.shots > .shot {
+  display: none;
+}
+
+.shots[data-active="0"] > .shot:nth-child(1),
+.shots[data-active="1"] > .shot:nth-child(2),
+.shots[data-active="2"] > .shot:nth-child(3),
+.shots[data-active="3"] > .shot:nth-child(4),
+.shots[data-active="4"] > .shot:nth-child(5),
+.shots[data-active="5"] > .shot:nth-child(6) {
+  display: block;
+}
+
+.shot-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-xs);
+}
+
+/* The tab already says which shot this is. */
+.shots .shot-label {
+  display: none;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+/* --- packages -------------------------------------------------------------- */
+
+.package-list {
+  list-style: none;
+  margin: var(--space-xl) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0 var(--space-xl);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+}
+
+.package-row {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: var(--space-sm);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+
+.package-row code {
+  font-size: 13px;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.package-row span {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* --- comparison ------------------------------------------------------------ */
+
+.table-scroll {
+  margin-top: var(--space-xl);
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+}
+
+.comparison table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 56rem;
+  font-size: var(--text-sm);
+}
+
+.comparison th,
+.comparison td {
+  text-align: left;
+  vertical-align: top;
+  padding: 14px var(--space-sm);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.comparison thead th {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+
+.comparison tbody th {
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  width: 14rem;
+}
+
+.comparison td {
+  color: var(--ink-soft);
+}
+
+.comparison td[data-ours="1"] {
+  background: var(--green-tint);
+  color: var(--ink);
+}
+
+.comparison tbody tr:last-child th,
+.comparison tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* --- start ----------------------------------------------------------------- */
+
+.start h2 {
+  color: var(--panel);
+}
+
+.start .lead {
+  color: var(--ink-mute);
+}
+
+.start .terminal {
+  margin-top: var(--space-lg);
+  border: 1px solid var(--line-on-ink);
+}
+
+.start-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+}
+
+.start .button-quiet {
+  color: var(--panel);
+  border-color: var(--line-on-ink);
+}
+
+/* --- narrow screens -------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .card-grid[data-columns="two"],
+  .card-grid[data-columns="three"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-links {
+    display: none;
+  }
+
+  .outcomes li,
+  .package-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "assemora-site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "assemora.com — built with Assemora, and deployed from this repository",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "assemora dev",
+    "start": "assemora start",
+    "seed": "node src/seed.ts",
+    "db:generate": "assemora db:generate",
+    "db:migrate": "assemora db:migrate",
+    "db:status": "assemora db:status",
+    "build": "vite build --config app/vite.config.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@assemora/auth": "^0.2.4",
+    "@assemora/core": "^0.2.4",
+    "@assemora/database": "^0.2.4",
+    "@assemora/database-postgres": "^0.2.4",
+    "@assemora/http": "^0.2.4",
+    "@assemora/pages": "^0.2.4",
+    "@assemora/react": "^0.2.4",
+    "@assemora/resources": "^0.2.4",
+    "@assemora/schema": "^0.2.4",
+    "@assemora/studio": "^0.2.4",
+    "assemora": "^0.2.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@assemora/cli": "^0.2.4",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "@vitejs/plugin-react": "6.1.0",
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  },
+  "packageManager": "pnpm@10.6.4",
+  "engines": {
+    "node": ">=24.11.0"
+  }
+}

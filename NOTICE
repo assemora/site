@@ -1,0 +1,16 @@
+assemora.com
+Copyright 2026 Assemora
+
+Bundled fonts
+-------------
+
+app/public/fonts holds three typefaces, redistributed under the SIL Open Font License
+1.1 (https://openfontlicense.org). They are served from this site's own origin rather
+than from a font CDN, so that no third party is told who is reading it.
+
+  Space Grotesk   Copyright 2020 The Space Grotesk Project Authors
+                  https://github.com/floriankarsten/space-grotesk
+  Manrope         Copyright 2018 The Manrope Project Authors
+                  https://github.com/sharanda/manrope
+  JetBrains Mono  Copyright 2020 The JetBrains Mono Project Authors
+                  https://github.com/JetBrains/JetBrainsMono

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Assemora — an agent proposes, a person applies</title>
+    <meta
+      name="description"
+      content="A TypeScript framework and CMS with one application layer, reached by developers, editors and AI agents alike. Every command is already an MCP tool, and an agent's write is a change set a person reviews."
+    />
+    <!--
+      The two faces this site is set in, served by this origin.
+      `style-src 'self'` is the policy the framework sends (SPEC.md §85), so a
+      stylesheet from a font CDN would be blocked — and self-hosting is the better
+      answer anyway: no third party learns who reads this page.
+    -->
+    <link
+      rel="preload"
+      href="/fonts/space-grotesk-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <!--
+      The theme (SPEC.md §62). This address never changes and is never cached; it
+      answers with the stylesheet's own version in the URL, which is cached for a
+      year. A document a bundler wrote cannot know that version, so it does not try.
+    -->
+    <link rel="stylesheet" href="/api/theme.css" />
+  </head>
+  <body>
+    <div id="site"></div>
+    <script type="module" src="/preview.tsx"></script>
+  </body>
+</html>

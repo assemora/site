@@ -1,0 +1,8 @@
+node_modules
+dist
+app/dist
+.turbo
+.assemora
+.env
+.git
+.DS_Store
