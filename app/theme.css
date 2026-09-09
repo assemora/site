@@ -68,6 +68,17 @@
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
+/*
+ * Spacing here is written out rather than taken from the token scale.
+ *
+ * The design system measures in two ranges and the scale can only serve one: 10, 18,
+ * 24, 28 and 56px are what a chip, a panel, a card and a section heading are made of,
+ * and 40–112px is the page's own rhythm. The tokens are given to the second, because
+ * that is what the universal controls of §61 address by name — `spacingTop: 'xl'` is a
+ * section's decision and it has to land on a real value. A card's padding is this
+ * file's decision and lands here.
+ */
+
 body {
   margin: 0;
   background: var(--paper);
@@ -93,7 +104,7 @@ a {
 main > .assemora-design > * {
   max-width: var(--container, var(--width-wide));
   margin-inline: auto;
-  padding-inline: var(--space-md);
+  padding-inline: 24px;
 }
 
 /* --- the shell ------------------------------------------------------------- */
@@ -117,11 +128,11 @@ main > .assemora-design > * {
 .footer-inner {
   max-width: var(--width-wide);
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-md);
+  gap: 24px;
 }
 
 .nav-inner {
@@ -235,7 +246,7 @@ main > .assemora-design > * {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
-  margin: 0 0 var(--space-sm);
+  margin: 0 0 18px;
 }
 
 h1,
@@ -272,28 +283,28 @@ h3 {
   line-height: 1.5;
   color: var(--ink-soft);
   max-width: 62ch;
-  margin: var(--space-sm) 0 0;
+  margin: 18px 0 0;
 }
 
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs) var(--space-sm);
+  gap: 10px 18px;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--ink-mute);
-  margin: var(--space-sm) 0 0;
+  margin: 18px 0 0;
 }
 
 .meta span + span::before {
   content: "·";
-  margin-right: var(--space-xs);
+  margin-right: 10px;
 }
 
 .caption {
   font-size: var(--text-sm);
   color: var(--ink-mute);
-  margin: var(--space-sm) 0 0;
+  margin: 18px 0 0;
   max-width: 72ch;
 }
 
@@ -303,8 +314,8 @@ pre {
 }
 
 .code-block {
-  margin: var(--space-md) 0 0;
-  padding: var(--space-lg);
+  margin: 24px 0 0;
+  padding: 28px;
   border-radius: var(--radius-md);
   background: var(--ink);
   color: var(--panel);
@@ -321,7 +332,7 @@ pre {
 .terminal {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 10px;
   background: var(--ink);
   color: var(--panel);
   border-radius: var(--radius-sm);
@@ -397,7 +408,7 @@ pre {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   color: var(--ink-mute);
-  padding: var(--space-md);
+  padding: 24px;
 }
 
 /* --- hero ------------------------------------------------------------------ */
@@ -406,8 +417,8 @@ pre {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-md);
-  margin-top: var(--space-lg);
+  gap: 24px;
+  margin-top: 28px;
 }
 
 /* --- proposals ------------------------------------------------------------- */
@@ -423,8 +434,8 @@ pre {
 .panel-head {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-sm) var(--space-lg);
+  gap: 10px;
+  padding: 18px 28px;
   border-bottom: 1px solid var(--hairline);
   font-size: var(--text-sm);
 }
@@ -462,7 +473,7 @@ pre {
 }
 
 .panel-body {
-  padding: var(--space-lg);
+  padding: 28px;
   font-family: var(--font-mono);
   font-size: 13px;
   line-height: var(--leading-relaxed);
@@ -486,7 +497,7 @@ pre {
 }
 
 .diff {
-  margin: var(--space-sm) 0;
+  margin: 18px 0;
   border: 1px solid var(--hairline);
   border-radius: 10px;
   overflow: hidden;
@@ -525,8 +536,8 @@ pre {
 .panel-foot {
   display: flex;
   justify-content: flex-end;
-  gap: var(--space-xs);
-  padding: var(--space-sm) var(--space-lg);
+  gap: 10px;
+  padding: 18px 28px;
   border-top: 1px solid var(--hairline);
 }
 
@@ -534,8 +545,8 @@ pre {
 
 .card-grid {
   display: grid;
-  gap: var(--space-sm);
-  margin-top: var(--space-xl);
+  gap: 18px;
+  margin-top: 56px;
 }
 
 /* A count, not a minimum width: `auto-fit` put four two-column cards into a row of
@@ -551,7 +562,7 @@ pre {
 .card {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+  padding: 28px;
   background: var(--panel);
 }
 
@@ -559,11 +570,11 @@ pre {
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
   color: var(--ink-soft);
-  margin: var(--space-xs) 0 0;
+  margin: 10px 0 0;
 }
 
 .badge {
-  margin-left: var(--space-xs);
+  margin-left: 10px;
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: var(--weight-semibold);
@@ -576,7 +587,7 @@ pre {
 }
 
 .card-code {
-  margin-top: var(--space-sm);
+  margin-top: 18px;
   padding: 12px 14px;
   border-radius: 12px;
   background: var(--ink);
@@ -597,6 +608,30 @@ pre {
   white-space: pre;
 }
 
+/*
+ * One card on ink, inside a section that is not.
+ *
+ * The design sets the agent apart this way rather than with a label: it is the author
+ * that is not a person, and the page says so by drawing it differently.
+ */
+.card[data-tone="ink"] {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.card[data-tone="ink"] h3 {
+  color: var(--panel);
+}
+
+.card[data-tone="ink"] p {
+  color: var(--ink-mute);
+}
+
+.card[data-tone="ink"] .card-code {
+  background: var(--ink-deep);
+  border: 1px solid var(--line-on-ink);
+}
+
 /* Counting is the card's own, so a section that numbers nothing looks as it did. */
 .card-grid[data-numbered="yes"] {
   counter-reset: step;
@@ -612,7 +647,7 @@ pre {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--accent);
-  margin-bottom: var(--space-xs);
+  margin-bottom: 10px;
 }
 
 /* A row of cards on ink: the section's background is a token, so only the parts that
@@ -636,7 +671,7 @@ pre {
 
 .outcomes {
   list-style: none;
-  margin: var(--space-xl) 0 0;
+  margin: 56px 0 0;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -647,8 +682,8 @@ pre {
 .outcomes li {
   display: grid;
   grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
-  gap: var(--space-md);
-  padding: 14px var(--space-lg);
+  gap: 24px;
+  padding: 14px 28px;
   align-items: baseline;
 }
 
@@ -682,8 +717,8 @@ pre {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-xs);
-  margin: var(--space-xl) 0 0;
+  gap: 10px;
+  margin: 56px 0 0;
   padding: 0;
 }
 
@@ -714,14 +749,14 @@ pre {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--ink-mute);
-  margin: var(--space-md) 0 0;
+  margin: 24px 0 0;
 }
 
 .tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-top: var(--space-lg);
+  margin-top: 28px;
   padding: 4px;
   background: var(--panel);
   border: 1px solid var(--line);
@@ -750,7 +785,7 @@ pre {
 }
 
 .shots {
-  margin-top: var(--space-sm);
+  margin-top: 18px;
 }
 
 /* One tab at a time. `maxChildren` is 6, so six rules is the whole of it. */
@@ -774,7 +809,7 @@ pre {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: var(--space-xs);
+  margin-bottom: 10px;
 }
 
 /* The tab already says which shot this is. */
@@ -794,17 +829,17 @@ pre {
 
 .package-list {
   list-style: none;
-  margin: var(--space-xl) 0 0;
+  margin: 56px 0 0;
   padding: 0;
   display: grid;
-  gap: 0 var(--space-xl);
+  gap: 0 56px;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
 }
 
 .package-row {
   display: grid;
   grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
-  gap: var(--space-sm);
+  gap: 18px;
   padding: 12px 0;
   border-bottom: 1px solid var(--line);
   align-items: baseline;
@@ -824,7 +859,7 @@ pre {
 /* --- comparison ------------------------------------------------------------ */
 
 .table-scroll {
-  margin-top: var(--space-xl);
+  margin-top: 56px;
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -842,7 +877,7 @@ pre {
 .comparison td {
   text-align: left;
   vertical-align: top;
-  padding: 14px var(--space-sm);
+  padding: 14px 18px;
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -878,34 +913,102 @@ pre {
 
 /* --- start ----------------------------------------------------------------- */
 
-.start h2 {
+/*
+ * The closing call is a panel on the page's ground, not a band across it.
+ *
+ * A section that fills the width to the glass reads as the end of the document; one
+ * that sits inside the column reads as the last card in it, which is what the design
+ * draws — and it is why this block asks for no background of its own.
+ */
+.start-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 56px;
+  align-items: center;
+  padding: 64px;
+  border-radius: 18px;
+  background: var(--ink);
+}
+
+.start-panel h2 {
   color: var(--panel);
+  max-width: 14ch;
 }
 
-.start .lead {
+.start-panel .lead {
   color: var(--ink-mute);
+  font-size: var(--text-sm);
 }
 
-.start .terminal {
-  margin-top: var(--space-lg);
+.start-panel .terminal {
+  margin-top: 28px;
   border: 1px solid var(--line-on-ink);
+  background: var(--ink-deep);
 }
 
 .start-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-top: var(--space-lg);
+  gap: 10px;
+  margin-top: 28px;
 }
 
-.start .button-quiet {
+.button-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-full);
+  padding: 11px 20px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.button-light:hover {
+  background: var(--mint);
+}
+
+.button-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-on-ink);
+  border-radius: var(--radius-full);
+  padding: 10px 19px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  background: transparent;
   color: var(--panel);
-  border-color: var(--line-on-ink);
+}
+
+.button-outline:hover {
+  border-color: var(--accent);
+  color: var(--mint);
+}
+
+.start-transcript {
+  margin: 0;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--line-on-ink);
+  background: var(--ink-deep);
+  color: var(--ink-mute);
+  font-size: 12.5px;
+  line-height: var(--leading-relaxed);
+  overflow-x: auto;
 }
 
 /* --- narrow screens -------------------------------------------------------- */
 
 @media (max-width: 900px) {
+  .start-panel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 28px;
+  }
+
   .card-grid[data-columns="two"],
   .card-grid[data-columns="three"] {
     grid-template-columns: minmax(0, 1fr);

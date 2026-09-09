@@ -232,8 +232,9 @@ export const CardView = ({
   readonly body?: string
   readonly codeComment?: string
   readonly code?: string
+  readonly tone?: string
 }>) => (
-  <article className="card">
+  <article className="card" data-tone={props.tone ?? 'paper'}>
     <h3>
       {props.title}
       {props.badge !== undefined && props.badge !== '' && (
@@ -455,25 +456,38 @@ export const StartView = ({
   readonly heading?: string
   readonly lead?: string
   readonly command?: string
+  readonly transcript?: { readonly language?: string; readonly source?: string }
   readonly actionLabel?: string
   readonly actionHref?: string
   readonly secondaryLabel?: string
   readonly secondaryHref?: string
 }>) => (
   <section className="start">
-    <h2>{props.heading}</h2>
-    {props.lead !== undefined && <p className="lead">{props.lead}</p>}
-    {props.command !== undefined && props.command !== '' && <Terminal command={props.command} />}
-    <div className="start-actions">
-      {props.actionLabel !== undefined && props.actionHref !== undefined && (
-        <a className="button-accent" href={props.actionHref}>
-          {props.actionLabel}
-        </a>
-      )}
-      {props.secondaryLabel !== undefined && props.secondaryHref !== undefined && (
-        <a className="button-quiet" href={props.secondaryHref}>
-          {props.secondaryLabel}
-        </a>
+    <div className="start-panel">
+      <div className="start-copy">
+        <h2>{props.heading}</h2>
+        {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+        {props.command !== undefined && props.command !== '' && (
+          <Terminal command={props.command} />
+        )}
+        <div className="start-actions">
+          {props.actionLabel !== undefined && props.actionHref !== undefined && (
+            <a className="button-light" href={props.actionHref}>
+              {props.actionLabel}
+            </a>
+          )}
+          {props.secondaryLabel !== undefined && props.secondaryHref !== undefined && (
+            <a className="button-outline" href={props.secondaryHref}>
+              {props.secondaryLabel}
+            </a>
+          )}
+        </div>
+      </div>
+
+      {props.transcript?.source !== undefined && props.transcript.source !== '' && (
+        <pre className="start-transcript">
+          <code data-language={props.transcript.language}>{props.transcript.source}</code>
+        </pre>
       )}
     </div>
   </section>

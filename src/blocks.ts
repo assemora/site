@@ -90,6 +90,7 @@ export const Card = block(
   {
     title: text().required().label('Title'),
     badge: text().label('Badge'),
+    tone: select('paper', 'ink').label('Tone'),
     body: textarea().required().label('Body'),
     codeComment: text().label('Code comment'),
     code: text().label('Code line'),
@@ -221,6 +222,7 @@ export const Start = block(
     heading: text().required().label('Heading'),
     lead: textarea().label('Lead'),
     command: text().label('Command'),
+    transcript: code('text').label('What it prints'),
     actionLabel: text().label('Primary label'),
     actionHref: text().label('Primary link'),
     secondaryLabel: text().label('Secondary label'),

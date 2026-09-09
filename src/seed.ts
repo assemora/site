@@ -142,14 +142,22 @@ const brand = (app: Application) =>
         relaxed: 1.65,
       },
     },
-    // 10 · 18 · 24 · 28 · 56 · 104px — the scale the design system measures in.
+    /**
+     * The page's rhythm, which is what the universal controls address by name.
+     *
+     * The design system measures in two ranges — 10 to 56px inside a component, 40 to
+     * 112px between sections — and seven steps cannot hold both. These are the second:
+     * `spacingTop: 'xs'` is how two sections are made to read as one, and `'xl'` is an
+     * ordinary break. A card's own padding is written out in `app/theme.css`, where it
+     * belongs, because it is a fact about the card rather than about the page.
+     */
     spacing: {
       none: '0',
-      xs: '0.625rem',
-      sm: '1.125rem',
-      md: '1.5rem',
-      lg: '1.75rem',
-      xl: '3.5rem',
+      xs: '2.5rem',
+      sm: '3.5rem',
+      md: '4rem',
+      lg: '5rem',
+      xl: '6rem',
       '2xl': '6.5rem',
     },
     radius: {
@@ -191,6 +199,16 @@ export default assemora({
   studio: true,
   mcp: true,
 })`
+
+const SESSION = `$ pnpm create assemora my-site
+$ cd my-site
+$ pnpm install
+$ pnpm build && pnpm dev
+
+listening on http://127.0.0.1:3000
+  site     http://127.0.0.1:3000/
+  studio   http://127.0.0.1:3000/studio
+  api      http://127.0.0.1:3000/api`
 
 const LOOP = `# the loop, as an agent sees it
 assemora.describe            →  { models: […], resources: […], commands: […], policies: […] }
@@ -318,6 +336,7 @@ const comparisonProps = (copy: Copy) => ({
 const startProps = (copy: Copy) => ({
   ...copy.start,
   command: COMMAND,
+  transcript: { language: 'text', source: SESSION },
   actionHref: REPOSITORY,
   secondaryHref: GUIDE,
 })
@@ -348,15 +367,15 @@ const build = async (
   const hero = await add(app, page, 'hero', heroProps(copy))
 
   await design(app, page, hero, {
-    spacingTop: '2xl',
-    spacingBottom: 'xl',
+    spacingTop: 'xl',
+    spacingBottom: 'none',
     container: 'wide',
   })
 
   const proposals = await add(app, page, 'proposals', proposalsProps(copy))
 
   await design(app, page, proposals, {
-    spacingBottom: '2xl',
+    spacingBottom: 'lg',
     container: 'wide',
   })
 
@@ -369,8 +388,8 @@ const build = async (
   })
 
   await design(app, page, authors, {
-    spacingTop: '2xl',
-    spacingBottom: '2xl',
+    spacingTop: 'xs',
+    spacingBottom: 'xl',
     container: 'wide',
     background: 'panel',
   })
@@ -386,7 +405,7 @@ const build = async (
         {
           ...card,
           ...(AUTHOR_CODE[index] ?? {}),
-          ...(index === 2 ? { badge: 'MCP' } : {}),
+          ...(index === 2 ? { badge: 'MCP', tone: 'ink' } : {}),
         },
         authors,
       ),
@@ -396,8 +415,8 @@ const build = async (
   const declaration = await add(app, page, 'declaration', declarationProps(copy))
 
   await design(app, page, declaration, {
-    spacingTop: '2xl',
-    spacingBottom: '2xl',
+    spacingTop: 'xl',
+    spacingBottom: 'xl',
     container: 'wide',
   })
 
@@ -405,7 +424,7 @@ const build = async (
 
   await design(app, page, mutation, {
     spacingTop: '2xl',
-    spacingBottom: 'xl',
+    spacingBottom: 'none',
     container: 'wide',
     background: 'ink',
   })
@@ -417,6 +436,7 @@ const build = async (
   })
 
   await design(app, page, steps, {
+    spacingTop: 'sm',
     spacingBottom: '2xl',
     container: 'wide',
     background: 'ink',
@@ -437,7 +457,7 @@ const build = async (
 
   await design(app, page, showcase, {
     spacingTop: '2xl',
-    spacingBottom: '2xl',
+    spacingBottom: 'xl',
     container: 'wide',
   })
 
@@ -450,8 +470,8 @@ const build = async (
   const comparison = await add(app, page, 'comparison', comparisonProps(copy))
 
   await design(app, page, comparison, {
-    spacingTop: '2xl',
-    spacingBottom: '2xl',
+    spacingTop: 'xl',
+    spacingBottom: 'xl',
     container: 'wide',
     background: 'panel',
   })
@@ -459,8 +479,8 @@ const build = async (
   const packages = await add(app, page, 'packages', { ...copy.packages })
 
   await design(app, page, packages, {
-    spacingTop: '2xl',
-    spacingBottom: '2xl',
+    spacingTop: 'xl',
+    spacingBottom: 'xs',
     container: 'wide',
   })
 
@@ -471,10 +491,9 @@ const build = async (
   const start = await add(app, page, 'start', startProps(copy))
 
   await design(app, page, start, {
-    spacingTop: '2xl',
+    spacingTop: 'md',
     spacingBottom: '2xl',
     container: 'wide',
-    background: 'ink',
   })
 
   return {
@@ -523,7 +542,7 @@ const apply = async (app: Application, page: string, placed: Placed, copy: Copy)
     await update(app, page, blockId, {
       ...card,
       ...(AUTHOR_CODE[index] ?? {}),
-      ...(index === 2 ? { badge: 'MCP' } : {}),
+      ...(index === 2 ? { badge: 'MCP', tone: 'ink' } : {}),
     })
   }
 
