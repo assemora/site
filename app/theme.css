@@ -669,11 +669,6 @@ pre {
 
 /* --- mutation -------------------------------------------------------------- */
 
-.mutation h2,
-.showcase[data-tone="ink"] h2 {
-  color: var(--panel);
-}
-
 .mutation h2 {
   color: var(--panel);
 }

@@ -345,7 +345,7 @@ export const ShowcaseView = ({
               aria-selected={index === active}
               onClick={() => setActive(index)}
             >
-              {String(shot.props['label'] ?? '')}
+              {String(shot.props.label ?? '')}
             </button>
           ))}
         </div>

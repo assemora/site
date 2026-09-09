@@ -45,9 +45,15 @@ pnpm db:migrate
 pnpm seed
 ```
 
-`ASSEMORA_SEED_PASSWORD` is the administrator's password. Unset, the seed generates one
-and writes it to `.env`; in a container that is an account nobody can sign in as, so
-the image refuses to start without it.
+`ASSEMORA_SEED_PASSWORD` is the administrator's password, and it is a fact about the
+deployment rather than about the first deploy: every run of `pnpm seed` sets the
+administrator's password to what the environment names, so rotating it is setting a
+variable and deploying. Run without one, `pnpm seed` refuses rather than generating a
+password into a `.env` that dies with the container — that is an account nobody can
+ever sign in as, and the image refuses to start for the same reason.
+
+It goes through `auth.users.password` on the Command Bus, so it is hashed by the handler
+and leaves no revision behind.
 
 ## Deploying
 
