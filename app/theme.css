@@ -1388,3 +1388,280 @@ pre {
     gap: 4px;
   }
 }
+
+/* ------------------------------------------------------------------ the guide */
+
+/*
+ * `/docs`, drawn in this site's own tokens.
+ *
+ * Every value below is a token this page already had. That is the point rather than
+ * tidiness: the guide is served from this origin, under this navigation, and a reader
+ * who followed a link from the landing page must not feel they have left. A stylesheet
+ * of its own is how documentation becomes a second product with a second look.
+ *
+ * The prose rules are written against element selectors inside `.prose`, because the
+ * HTML is Markdown's and carries no classes. They sit at the end of this file, so the
+ * one that has to win over `.panel-body p` — a paragraph inside a rendered code panel —
+ * does so on source order rather than by counting selectors.
+ */
+.docs {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 64px;
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  padding: 72px 32px 104px;
+}
+
+@media (max-width: 900px) {
+  .docs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    padding: 40px 20px 72px;
+  }
+}
+
+.docs-nav {
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .docs-nav {
+    position: static;
+    max-height: none;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.docs-chapters {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.docs-link {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: var(--radius-md);
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  text-decoration: none;
+}
+
+.docs-link:hover {
+  background: var(--panel);
+  color: var(--ink);
+}
+
+/*
+ * The page being read, said twice: in weight and in colour.
+ *
+ * A sidebar of sixteen links needs the current one findable without reading them all,
+ * and weight alone is not enough at this size.
+ */
+.docs-link.is-current {
+  background: var(--panel);
+  color: var(--ink-deep);
+  font-weight: var(--weight-semibold);
+}
+
+.docs-number {
+  flex: none;
+  width: 22px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.docs-link.is-current .docs-number {
+  color: var(--accent);
+}
+
+.docs-body {
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------------- the prose */
+
+.prose {
+  max-width: 74ch;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: var(--leading-relaxed);
+}
+
+.prose h1 {
+  margin: 0 0 24px;
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--ink-deep);
+}
+
+.prose h2 {
+  margin: 56px 0 16px;
+  font-family: var(--font-heading);
+  font-size: 25px;
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.015em;
+  color: var(--ink-deep);
+}
+
+.prose h3 {
+  margin: 36px 0 12px;
+  font-size: 18px;
+  font-weight: var(--weight-semibold);
+  color: var(--ink-deep);
+}
+
+.prose p,
+.prose li {
+  margin: 0 0 16px;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: 8px;
+}
+
+.prose a {
+  color: var(--accent-deep);
+  text-underline-offset: 3px;
+}
+
+.prose strong {
+  font-weight: var(--weight-semibold);
+  color: var(--ink-deep);
+}
+
+/*
+ * Inline code, and code in a block, are two different things and are styled apart.
+ *
+ * `code` inside `pre` inherits the block's own setting, so the inline chip must not
+ * paint a background on it — that is the rule that draws a grey box behind every line
+ * of a listing.
+ */
+.prose :not(pre) > code {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: var(--panel);
+  color: var(--ink-deep);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.prose pre {
+  margin: 0 0 20px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: var(--leading-normal);
+}
+
+.prose pre code {
+  font: inherit;
+  color: var(--ink-deep);
+}
+
+.prose blockquote {
+  margin: 0 0 20px;
+  padding: 4px 0 4px 18px;
+  border-left: 2px solid var(--accent);
+  color: var(--ink-soft);
+}
+
+.prose hr {
+  margin: 40px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* A wide table scrolls inside its own box; the page never scrolls sideways. */
+.prose table {
+  display: block;
+  width: 100%;
+  margin: 0 0 20px;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.prose th,
+.prose td {
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--panel);
+  font-weight: var(--weight-semibold);
+  color: var(--ink-deep);
+}
+
+.prose img {
+  max-width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+/* ----------------------------------------------------------------- the walk */
+
+.docs-walk {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.docs-step {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  color: var(--ink-deep);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+}
+
+.docs-step:hover {
+  border-color: var(--accent);
+}
+
+.docs-step.is-next {
+  grid-column: 2;
+  text-align: right;
+}
+
+.docs-step-label {
+  color: var(--ink-faint);
+  font-size: 12px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

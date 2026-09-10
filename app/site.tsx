@@ -201,30 +201,51 @@ const LanguageMenu = ({ locale }: { readonly locale: Locale }) => {
   )
 }
 
-const Chrome = ({
+/**
+ * The chrome, on the landing page and on the guide alike (`docs.tsx`).
+ *
+ * `away` is what the two have to differ by. The middle links name sections of the
+ * landing page, so on the landing page they are fragments and anywhere else they have
+ * to carry the page they belong to — a bare `#authors` read from `/docs/03-models`
+ * scrolls to nothing and leaves the address bar lying about where the reader is.
+ *
+ * The language menu goes with them. It switches the language of the *site*, and the
+ * guide is written in one language: offering a choice that cannot change the page it
+ * is drawn on is a control that reaches nothing, which is the rule the sign-in screen
+ * is already built under.
+ */
+export const Chrome = ({
   locale,
+  away = false,
   children,
 }: {
   readonly locale: Locale
+  /** Drawn somewhere other than the landing page, so its anchors need the way back. */
+  readonly away?: boolean
   readonly children: ReactNode
-}) => (
+}) => {
+  const home = locale === DEFAULT_LOCALE ? '/' : `/${locale}`
+  const section = (anchor: string): string => (away ? `${home}#${anchor}` : `#${anchor}`)
+
+  return (
   <div className="shell">
     <nav className="nav">
       <div className="nav-inner">
-        <a className="wordmark" href={locale === DEFAULT_LOCALE ? '/' : `/${locale}`}>
+        <a className="wordmark" href={home}>
           {MARK}
           Assemora
         </a>
         <div className="nav-links">
-          <a href="#authors">Authors</a>
-          <a href="#studio">Studio</a>
-          <a href="#agents">Agents</a>
-          <a href="#packages">Packages</a>
+          <a href={section('authors')}>Authors</a>
+          <a href={section('studio')}>Studio</a>
+          <a href={section('agents')}>Agents</a>
+          <a href={section('packages')}>Packages</a>
+          <a href="/docs">Docs</a>
           <a href="https://github.com/assemora/assemora">GitHub</a>
         </div>
-        <LanguageMenu locale={locale} />
+        {!away && <LanguageMenu locale={locale} />}
 
-        <a className="nav-cta" href="#start">
+        <a className="nav-cta" href={section('start')}>
           Get started
         </a>
       </div>
@@ -253,7 +274,8 @@ const Chrome = ({
       </div>
     </footer>
   </div>
-)
+  )
+}
 
 export type SiteProps = {
   readonly tree: BlockTree
