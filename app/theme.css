@@ -279,12 +279,19 @@ h1 {
   letter-spacing: -0.035em;
 }
 
+/* 32px to 52px, which is 51px at 1280 — where the design sets it. */
 h2 {
-  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  font-size: clamp(2rem, 4vw, 3.25rem);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: -0.03em;
   max-width: 20ch;
+}
+
+/* A little larger on ink, which is what the design does with the two dark sections. */
+.mutation h2,
+.start-panel h2 {
+  font-size: clamp(2.25rem, 4.4vw, 3.5rem);
 }
 
 h3 {
@@ -425,6 +432,29 @@ pre {
   font-size: var(--text-sm);
   color: var(--ink-mute);
   padding: 24px;
+}
+
+/*
+ * Heading on the left, lead on the right.
+ *
+ * The design opens Studio, the packages and the mutation path this way: the claim and
+ * its qualification side by side, rather than one under the other. It is a wide-screen
+ * arrangement and it collapses below 1080px, where the two would be too narrow to read.
+ */
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: end;
+}
+
+.section-head .lead {
+  margin-top: 0;
+}
+
+/* The mutation path gives its two halves a little more room, as the design does. */
+.mutation .section-head {
+  gap: 40px;
 }
 
 /* --- hero ------------------------------------------------------------------ */
@@ -584,8 +614,20 @@ pre {
 
 .card-grid {
   display: grid;
-  gap: 18px;
+  gap: 16px;
   margin-top: 56px;
+}
+
+/*
+ * A hairline instead of a gap.
+ *
+ * The four steps of the mutation path are one object in the design, divided rather
+ * than separated: the grid shows its own ground through 1px seams. It is the same
+ * idiom the package list uses.
+ */
+.card-grid[data-seam="1"] {
+  gap: 1px;
+  background: var(--line-on-ink);
 }
 
 /* A count, not a minimum width: `auto-fit` put four two-column cards into a row of
@@ -708,9 +750,31 @@ pre {
 
 /* --- declaration ----------------------------------------------------------- */
 
+/*
+ * The declaration and what it becomes, side by side.
+ *
+ * The design puts the claim and its consequences in two columns of 548px: the code on
+ * the left is what you write, the list on the right is what you get, and reading them
+ * against each other is the argument.
+ */
+.declaration {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.declaration .lead {
+  max-width: none;
+}
+
+.declaration .code-block {
+  margin-top: 18px;
+}
+
 .outcomes {
   list-style: none;
-  margin: 56px 0 0;
+  margin: 0;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -718,11 +782,13 @@ pre {
   overflow: hidden;
 }
 
+/* Near enough to halves, which is what the design gives them: the call and what it
+   answers with are the same size of claim. */
 .outcomes li {
   display: grid;
-  grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
-  gap: 24px;
-  padding: 14px 28px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 18px;
   align-items: baseline;
 }
 
@@ -866,22 +932,29 @@ pre {
 
 /* --- packages -------------------------------------------------------------- */
 
+/*
+ * Twenty-four cells, four across, a hairline apart.
+ *
+ * The seams are the grid's own background showing through 1px gaps, which is how the
+ * design draws it: one object with divisions rather than twenty-four separated things.
+ */
 .package-list {
   list-style: none;
   margin: 56px 0 0;
   padding: 0;
   display: grid;
-  gap: 0 56px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: 1px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: var(--line);
+  border: 1px solid var(--line);
 }
 
 .package-row {
-  display: grid;
-  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
-  gap: 18px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+  background: var(--panel);
 }
 
 .package-row code {
@@ -961,8 +1034,8 @@ pre {
  */
 .start-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
   align-items: center;
   padding: 64px;
   border-radius: 18px;
@@ -1042,6 +1115,20 @@ pre {
 /* --- narrow screens -------------------------------------------------------- */
 
 @media (max-width: 1080px) {
+  .declaration {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .section-head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .package-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 40px;
@@ -1057,6 +1144,10 @@ pre {
 
   .card-grid[data-columns="two"],
   .card-grid[data-columns="three"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .package-list {
     grid-template-columns: minmax(0, 1fr);
   }
 }

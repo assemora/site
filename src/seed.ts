@@ -389,7 +389,6 @@ const build = async (
     spacingTop: 'xs',
     spacingBottom: 'xl',
     container: 'wide',
-    background: 'panel',
   })
 
   const authorCards: string[] = []
@@ -416,6 +415,7 @@ const build = async (
     spacingTop: 'xl',
     spacingBottom: 'xl',
     container: 'wide',
+    background: 'panel',
   })
 
   const mutation = await add(app, page, 'mutation', {
@@ -475,7 +475,6 @@ const build = async (
     spacingTop: 'xl',
     spacingBottom: 'xl',
     container: 'wide',
-    background: 'panel',
   })
 
   const packages = await add(app, page, 'packages', {
@@ -487,6 +486,7 @@ const build = async (
     spacingTop: 'xl',
     spacingBottom: 'xs',
     container: 'wide',
+    background: 'panel',
   })
 
   for (const [name, summary] of PACKAGES) {

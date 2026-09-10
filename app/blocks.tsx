@@ -226,6 +226,7 @@ export const CardsView = ({
       className="card-grid"
       data-columns={props.columns ?? 'three'}
       data-numbered={props.numbered ?? 'no'}
+      data-seam={props.tone === 'ink' ? '1' : undefined}
     >
       {children}
     </div>
@@ -269,26 +270,44 @@ export const DeclarationView = ({
   readonly lead?: string
   readonly sample?: { readonly language?: string; readonly source?: string }
   readonly outcomes?: readonly { readonly call?: string; readonly result?: string }[]
-}>) => (
-  <section className="declaration">
-    {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
-    <h2>{props.heading}</h2>
-    {props.lead !== undefined && <p className="lead">{props.lead}</p>}
-    <pre className="code-block">
-      <code data-language={props.sample?.language}>{props.sample?.source}</code>
-    </pre>
-    {props.outcomes !== undefined && props.outcomes.length > 0 && (
-      <ul className="outcomes">
-        {props.outcomes.map((outcome) => (
-          <li key={outcome.call ?? outcome.result}>
-            <code>{outcome.call}</code>
-            <span>{outcome.result}</span>
-          </li>
+}>) => {
+  /*
+   * One field, three cards.
+   *
+   * The design shows the declaration as separate pieces — the model, the resource, the
+   * application — because they are three decisions rather than one listing. A blank
+   * line is where the author of the field already separated them, so that is the seam
+   * rather than three fields nobody would keep in step.
+   */
+  const parts = (props.sample?.source ?? '').split(/\n{2,}/).filter((part) => part !== '')
+
+  return (
+    <section className="declaration">
+      <div className="declaration-copy">
+        {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
+        <h2>{props.heading}</h2>
+        {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+
+        {parts.map((part) => (
+          <pre className="code-block" key={part.slice(0, 40)}>
+            <code data-language={props.sample?.language}>{part}</code>
+          </pre>
         ))}
-      </ul>
-    )}
-  </section>
-)
+      </div>
+
+      {props.outcomes !== undefined && props.outcomes.length > 0 && (
+        <ul className="outcomes">
+          {props.outcomes.map((outcome) => (
+            <li key={outcome.call ?? outcome.result}>
+              <code>{outcome.call}</code>
+              <span>{outcome.result}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )
+}
 
 export const MutationView = ({
   props,
@@ -302,8 +321,10 @@ export const MutationView = ({
 }>) => (
   <section className="mutation" id={props.anchor}>
     {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
-    <h2>{props.heading}</h2>
-    {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+    <div className="section-head">
+      <h2>{props.heading}</h2>
+      {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+    </div>
     {props.pipeline !== undefined && props.pipeline.length > 0 && (
       <ol className="pipeline">
         {props.pipeline.map((step) => (
@@ -343,8 +364,10 @@ export const ShowcaseView = ({
   return (
     <section className="showcase" id={props.anchor}>
       {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
-      <h2>{props.heading}</h2>
-      {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+      <div className="section-head">
+        <h2>{props.heading}</h2>
+        {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+      </div>
 
       {shots.length > 1 && (
         <div className="tabs" role="tablist">
