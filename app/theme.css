@@ -216,26 +216,97 @@ main > .assemora-design > * {
 }
 
 .languages {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.languages-button {
   display: flex;
-  gap: 2px;
+  align-items: center;
+  gap: 7px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius-full);
-  padding: 3px;
-}
-
-.languages a {
+  padding: 7px 12px 7px 14px;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: var(--weight-semibold);
   letter-spacing: 0.04em;
-  padding: 4px 9px;
-  border-radius: var(--radius-full);
-  color: var(--ink-mute);
+  color: var(--ink);
 }
 
-.languages a[aria-current="true"] {
+.languages-button:hover {
+  border-color: var(--ink-mute);
+}
+
+.languages-button[aria-expanded="true"] {
   background: var(--ink);
+  border-color: var(--ink);
+  color: var(--panel);
+}
+
+/* Drawn rather than typed: a glyph would be a different shape in every fallback. */
+.languages-chevron {
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentcolor;
+  border-bottom: 1.5px solid currentcolor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.languages-button[aria-expanded="true"] .languages-chevron {
+  transform: translateY(1px) rotate(225deg);
+}
+
+.languages-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  min-width: 11rem;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px -22px rgb(26 26 26 / 35%);
+}
+
+.languages-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.languages-menu a:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.languages-menu a[aria-current="true"] {
+  color: var(--ink);
+  font-weight: var(--weight-semibold);
+}
+
+.languages-code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  padding: 2px 6px;
+}
+
+.languages-menu a[aria-current="true"] .languages-code {
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--panel);
 }
 

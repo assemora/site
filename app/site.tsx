@@ -8,7 +8,7 @@
  */
 import { AssemoraPage, createBlockRegistry } from '@assemora/react'
 import type { BlockTree } from '@assemora/schema'
-import type { ReactNode } from 'react'
+import { type ReactNode, useEffect, useId, useRef, useState } from 'react'
 
 import {
   CardsView,
@@ -53,6 +53,13 @@ export const blocks = createBlockRegistry(
 /** The languages this deployment serves, and the one it falls back to (SPEC.md §131). */
 export const LOCALES = ['en', 'uk', 'ru'] as const
 export type Locale = (typeof LOCALES)[number]
+
+/** What each language calls itself. A list of languages in one language is a list for one reader. */
+const LANGUAGE_NAMES: Readonly<Record<Locale, string>> = {
+  en: 'English',
+  uk: 'Українська',
+  ru: 'Русский',
+}
 export const DEFAULT_LOCALE: Locale = 'en'
 
 const isLocale = (value: string): value is Locale => (LOCALES as readonly string[]).includes(value)
@@ -117,6 +124,73 @@ const MARK = (
  * and saying so is better than quietly implying the site is entirely editable when one
  * strip of it is not.
  */
+/**
+ * The language, as a menu rather than a row.
+ *
+ * Three abbreviations side by side ask a reader to know what UK and RU stand for; a
+ * menu can afford to say Українська. It is a real menu, so it answers to a keyboard
+ * and to Escape, and it closes when the page is clicked elsewhere — a dropdown that
+ * only closes by choosing something is a trap rather than a control.
+ *
+ * The items are links, not buttons: each language is an address, and a reader is
+ * entitled to open one in a new tab.
+ */
+const LanguageMenu = ({ locale }: { readonly locale: Locale }) => {
+  const [open, setOpen] = useState(false)
+  const holder = useRef<HTMLDivElement>(null)
+  const id = useId()
+
+  useEffect(() => {
+    if (!open) return
+
+    const dismiss = (event: MouseEvent) => {
+      if (!holder.current?.contains(event.target as Node)) setOpen(false)
+    }
+
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+
+    document.addEventListener('mousedown', dismiss)
+    document.addEventListener('keydown', escape)
+
+    return () => {
+      document.removeEventListener('mousedown', dismiss)
+      document.removeEventListener('keydown', escape)
+    }
+  }, [open])
+
+  return (
+    <div className="languages" ref={holder}>
+      <button
+        type="button"
+        className="languages-button"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => setOpen((was) => !was)}
+      >
+        {locale.toUpperCase()}
+        <span aria-hidden="true" className="languages-chevron" />
+      </button>
+
+      <div className="languages-menu" id={id} role="menu" hidden={!open}>
+        {LOCALES.map((option) => (
+          <a
+            key={option}
+            role="menuitem"
+            href={option === DEFAULT_LOCALE ? '/' : `/${option}`}
+            aria-current={option === locale ? 'true' : undefined}
+          >
+            <span className="languages-code">{option.toUpperCase()}</span>
+            {LANGUAGE_NAMES[option]}
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 const Chrome = ({
   locale,
   children,
@@ -138,17 +212,7 @@ const Chrome = ({
           <a href="#packages">Packages</a>
           <a href="https://github.com/assemora/assemora">GitHub</a>
         </div>
-        <div className="languages">
-          {LOCALES.map((option) => (
-            <a
-              key={option}
-              href={option === DEFAULT_LOCALE ? '/' : `/${option}`}
-              aria-current={option === locale ? 'true' : undefined}
-            >
-              {option.toUpperCase()}
-            </a>
-          ))}
-        </div>
+        <LanguageMenu locale={locale} />
 
         <a className="nav-cta" href="#start">
           Get started
