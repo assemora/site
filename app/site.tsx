@@ -147,16 +147,16 @@ const LanguageMenu = ({ locale }: { readonly locale: Locale }) => {
       if (!holder.current?.contains(event.target as Node)) setOpen(false)
     }
 
-    const escape = (event: KeyboardEvent) => {
+    const onEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpen(false)
     }
 
     document.addEventListener('mousedown', dismiss)
-    document.addEventListener('keydown', escape)
+    document.addEventListener('keydown', onEscape)
 
     return () => {
       document.removeEventListener('mousedown', dismiss)
-      document.removeEventListener('keydown', escape)
+      document.removeEventListener('keydown', onEscape)
     }
   }, [open])
 
