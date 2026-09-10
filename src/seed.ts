@@ -98,6 +98,8 @@ const brand = (app: Application) =>
     colors: {
       ink: '#1a1a1a',
       'ink-deep': '#111111',
+      // One step above ink: the ground a chip sits on inside a dark section.
+      'ink-raised': '#222222',
       'ink-soft': '#5b6070',
       'ink-mute': '#8a8f9c',
       // Lighter than a caption: body text on ink, which the design sets apart.

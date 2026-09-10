@@ -162,12 +162,12 @@ export const COPY = {
       },
       {
         title: 'Opt out, if you must',
-        body: 'is the one line that lets an agent write straight through.',
+        body: "`mcp: { mutations: 'direct' }` is the one line that lets an agent write straight through.",
       },
     ],
     showcase: {
       heading: 'No list of collections. No hand-written form. No list of block types.',
-      lead: 'Add resource(Dish, …) to the application and it appears on the dashboard, in the sidebar, in the command palette and in the API Explorer, with no edit to Studio. Pages are a block tree, never HTML, with undo and redo. The theme is tokens, and nothing accepts CSS.',
+      lead: 'Add `resource(Dish, …)` to the application and it appears on the dashboard, in the sidebar, in the command palette and in the API Explorer, with no edit to Studio. Pages are a block tree, never HTML, with undo and redo. The theme is tokens, and nothing accepts CSS.',
       shots: [
         {
           label: 'Page builder',
@@ -254,7 +254,7 @@ export const COPY = {
     packages: {
       eyebrow: '24 packages',
       heading: 'Fixed boundaries, enforced in CI.',
-      lead: 'Dependency direction is declared once and checked by pnpm boundaries. A new edge between packages needs a new ADR. The umbrella is the one package allowed to depend on everything, because it is the one nothing depends on.',
+      lead: 'Dependency direction is declared once and checked by `pnpm boundaries`. A new edge between packages needs a new ADR. The umbrella is the one package allowed to depend on everything, because it is the one nothing depends on.',
     },
     start: {
       heading: 'Four commands. One process.',
@@ -342,12 +342,12 @@ export const COPY = {
       },
       {
         title: 'Відмовитися, якщо конче треба',
-        body: '— єдиний рядок, що дозволяє агенту писати напряму.',
+        body: "`mcp: { mutations: 'direct' }` — єдиний рядок, що дозволяє агенту писати напряму.",
       },
     ],
     showcase: {
       heading: 'Без списку колекцій. Без написаних вручну форм. Без списку типів блоків.',
-      lead: 'Додайте resource(Dish, …) до застосунку — і він з’явиться на дашборді, у сайдбарі, у палітрі команд та в API Explorer без жодної правки Studio. Сторінки — це дерево блоків, ніколи не HTML, з undo та redo. Тема — це токени, і ніщо не приймає CSS.',
+      lead: 'Додайте `resource(Dish, …)` до застосунку — і він з’явиться на дашборді, у сайдбарі, у палітрі команд та в API Explorer без жодної правки Studio. Сторінки — це дерево блоків, ніколи не HTML, з undo та redo. Тема — це токени, і ніщо не приймає CSS.',
       shots: [
         {
           label: 'Конструктор сторінок',
@@ -433,7 +433,7 @@ export const COPY = {
     packages: {
       eyebrow: '24 пакети',
       heading: 'Фіксовані межі, перевірені в CI.',
-      lead: 'Напрямок залежностей оголошено один раз і перевіряється pnpm boundaries. Нове ребро між пакетами потребує нового ADR. Парасолька — єдиний пакет, якому дозволено залежати від усього, бо від нього не залежить ніщо.',
+      lead: 'Напрямок залежностей оголошено один раз і перевіряється `pnpm boundaries`. Нове ребро між пакетами потребує нового ADR. Парасолька — єдиний пакет, якому дозволено залежати від усього, бо від нього не залежить ніщо.',
     },
     start: {
       heading: 'Чотири команди. Один процес.',
@@ -522,12 +522,12 @@ export const COPY = {
       },
       {
         title: 'Отказаться, если очень нужно',
-        body: '— единственная строка, которая позволяет агенту писать напрямую.',
+        body: "`mcp: { mutations: 'direct' }` — единственная строка, которая позволяет агенту писать напрямую.",
       },
     ],
     showcase: {
       heading: 'Без списка коллекций. Без написанных вручную форм. Без списка типов блоков.',
-      lead: 'Добавьте resource(Dish, …) в приложение — и он появится на дашборде, в сайдбаре, в палитре команд и в API Explorer без единой правки Studio. Страницы — это дерево блоков, никогда не HTML, с undo и redo. Тема — это токены, и ничто не принимает CSS.',
+      lead: 'Добавьте `resource(Dish, …)` в приложение — и он появится на дашборде, в сайдбаре, в палитре команд и в API Explorer без единой правки Studio. Страницы — это дерево блоков, никогда не HTML, с undo и redo. Тема — это токены, и ничто не принимает CSS.',
       shots: [
         {
           label: 'Конструктор страниц',
@@ -614,7 +614,7 @@ export const COPY = {
     packages: {
       eyebrow: '24 пакета',
       heading: 'Фиксированные границы, проверенные в CI.',
-      lead: 'Направление зависимостей объявлено один раз и проверяется pnpm boundaries. Новое ребро между пакетами требует нового ADR. Зонтик — единственный пакет, которому разрешено зависеть от всего, потому что от него не зависит ничто.',
+      lead: 'Направление зависимостей объявлено один раз и проверяется `pnpm boundaries`. Новое ребро между пакетами требует нового ADR. Зонтик — единственный пакет, которому разрешено зависеть от всего, потому что от него не зависит ничто.',
     },
     start: {
       heading: 'Четыре команды. Один процесс.',
@@ -704,13 +704,13 @@ export const COPY = {
       },
       {
         title: 'Abschalten, wenn es sein muss',
-        body: "mcp: { mutations: 'direct' } ist die eine Zeile, die einen Agenten direkt schreiben lässt.",
+        body: "`mcp: { mutations: 'direct' }` ist die eine Zeile, die einen Agenten direkt schreiben lässt.",
       },
     ],
     showcase: {
       heading:
         'Keine Liste von Kollektionen. Kein handgeschriebenes Formular. Keine Liste von Blocktypen.',
-      lead: 'Füge resource(Dish, …) der Anwendung hinzu, und es erscheint im Dashboard, in der Seitenleiste, in der Befehlspalette und im API-Explorer — ohne eine einzige Änderung an Studio. Seiten sind ein Blockbaum, niemals HTML, mit Rückgängig und Wiederholen. Das Theme sind Tokens, und nichts nimmt CSS entgegen.',
+      lead: 'Füge `resource(Dish, …)` der Anwendung hinzu, und es erscheint im Dashboard, in der Seitenleiste, in der Befehlspalette und im API-Explorer — ohne eine einzige Änderung an Studio. Seiten sind ein Blockbaum, niemals HTML, mit Rückgängig und Wiederholen. Das Theme sind Tokens, und nichts nimmt CSS entgegen.',
       shots: [
         {
           label: 'Seitenbaukasten',
@@ -798,7 +798,7 @@ export const COPY = {
     packages: {
       eyebrow: '24 Pakete',
       heading: 'Feste Grenzen, in der CI geprüft.',
-      lead: 'Die Abhängigkeitsrichtung wird einmal deklariert und von pnpm boundaries geprüft. Eine neue Kante zwischen Paketen braucht ein neues ADR. Das Dachpaket ist das einzige, das von allem abhängen darf, weil nichts von ihm abhängt.',
+      lead: 'Die Abhängigkeitsrichtung wird einmal deklariert und von `pnpm boundaries` geprüft. Eine neue Kante zwischen Paketen braucht ein neues ADR. Das Dachpaket ist das einzige, das von allem abhängen darf, weil nichts von ihm abhängt.',
     },
     start: {
       heading: 'Vier Befehle. Ein Prozess.',
@@ -887,13 +887,13 @@ export const COPY = {
       },
       {
         title: 'Desactivarlo, si hace falta',
-        body: "mcp: { mutations: 'direct' } es la única línea que deja a un agente escribir directamente.",
+        body: "`mcp: { mutations: 'direct' }` es la única línea que deja a un agente escribir directamente.",
       },
     ],
     showcase: {
       heading:
         'Sin lista de colecciones. Sin formularios escritos a mano. Sin lista de tipos de bloque.',
-      lead: 'Añade resource(Dish, …) a la aplicación y aparece en el panel, en la barra lateral, en la paleta de comandos y en el Explorador de API, sin tocar Studio. Las páginas son un árbol de bloques, nunca HTML, con deshacer y rehacer. El tema son tokens, y nada acepta CSS.',
+      lead: 'Añade `resource(Dish, …)` a la aplicación y aparece en el panel, en la barra lateral, en la paleta de comandos y en el Explorador de API, sin tocar Studio. Las páginas son un árbol de bloques, nunca HTML, con deshacer y rehacer. El tema son tokens, y nada acepta CSS.',
       shots: [
         {
           label: 'Constructor de páginas',
@@ -981,7 +981,7 @@ export const COPY = {
     packages: {
       eyebrow: '24 paquetes',
       heading: 'Fronteras fijas, comprobadas en CI.',
-      lead: 'La dirección de las dependencias se declara una vez y la comprueba pnpm boundaries. Una nueva arista entre paquetes necesita un ADR nuevo. El paquete paraguas es el único al que se le permite depender de todo, porque es aquel del que no depende nada.',
+      lead: 'La dirección de las dependencias se declara una vez y la comprueba `pnpm boundaries`. Una nueva arista entre paquetes necesita un ADR nuevo. El paquete paraguas es el único al que se le permite depender de todo, porque es aquel del que no depende nada.',
     },
     start: {
       heading: 'Cuatro comandos. Un proceso.',
@@ -1070,13 +1070,13 @@ export const COPY = {
       },
       {
         title: "S'en passer, s'il le faut",
-        body: "mcp: { mutations: 'direct' } est la seule ligne qui laisse un agent écrire directement.",
+        body: "`mcp: { mutations: 'direct' }` est la seule ligne qui laisse un agent écrire directement.",
       },
     ],
     showcase: {
       heading:
         'Aucune liste de collections. Aucun formulaire écrit à la main. Aucune liste de types de blocs.',
-      lead: "Ajoutez resource(Dish, …) à l'application et cela apparaît sur le tableau de bord, dans la barre latérale, dans la palette de commandes et dans l'explorateur d'API, sans toucher à Studio. Les pages sont un arbre de blocs, jamais du HTML, avec annuler et rétablir. Le thème, ce sont des jetons, et rien n'accepte de CSS.",
+      lead: "Ajoutez `resource(Dish, …)` à l'application et cela apparaît sur le tableau de bord, dans la barre latérale, dans la palette de commandes et dans l'explorateur d'API, sans toucher à Studio. Les pages sont un arbre de blocs, jamais du HTML, avec annuler et rétablir. Le thème, ce sont des jetons, et rien n'accepte de CSS.",
       shots: [
         {
           label: 'Constructeur de pages',
@@ -1164,7 +1164,7 @@ export const COPY = {
     packages: {
       eyebrow: '24 paquets',
       heading: 'Des frontières fixes, vérifiées en CI.',
-      lead: "Le sens des dépendances est déclaré une fois et vérifié par pnpm boundaries. Une nouvelle arête entre paquets demande un nouvel ADR. Le paquet parapluie est le seul autorisé à dépendre de tout, parce que c'est celui dont rien ne dépend.",
+      lead: "Le sens des dépendances est déclaré une fois et vérifié par `pnpm boundaries`. Une nouvelle arête entre paquets demande un nouvel ADR. Le paquet parapluie est le seul autorisé à dépendre de tout, parce que c'est celui dont rien ne dépend.",
     },
     start: {
       heading: 'Quatre commandes. Un processus.',

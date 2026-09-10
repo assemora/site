@@ -234,12 +234,21 @@ const Chrome = ({
 
     <footer className="footer">
       <div className="footer-inner">
-        <p>Build visually. Extend with TypeScript. Control with AI.</p>
+        <span className="wordmark">
+          {MARK}
+          Assemora
+        </span>
+
+        <div className="footer-links">
+          <a href="https://github.com/assemora/assemora/blob/main/SPEC.md">SPEC.md</a>
+          <a href="https://github.com/assemora/assemora/tree/main/docs/adr">ADRs</a>
+          <a href="https://github.com/assemora/assemora/blob/main/CONTRIBUTING.md">Contributing</a>
+          <a href="https://github.com/assemora/assemora/blob/main/SECURITY.md">Security</a>
+        </div>
+
         <p className="meta">
           <span>Apache-2.0</span>
-          <span>
-            <a href="https://github.com/assemora/assemora">github.com/assemora/assemora</a>
-          </span>
+          <span>Build visually. Extend with TypeScript. Control with AI.</span>
         </p>
       </div>
     </footer>

@@ -13,6 +13,33 @@
 import type { BlockViewProps } from '@assemora/react'
 import { useEffect, useState } from 'react'
 
+/**
+ * A paragraph that may name code inside it.
+ *
+ * The design sets `resource(Dish, …)` and `mcp: { mutations: 'direct' }` as code
+ * within a sentence, and a field holding one string cannot say where those begin. A
+ * backtick can, and it costs the schema nothing: the value stays a string an editor
+ * types, and Studio shows it as written.
+ *
+ * Deliberately the whole of the markup. Anything richer is `richText()`, which is a
+ * field of its own with an editor behind it — not a convention smuggled into a line
+ * of prose.
+ */
+const Prose = ({ text }: { readonly text: string }) => (
+  <>
+    {text.split('`').map((part, index) =>
+      index % 2 === 1 ? (
+        // biome-ignore lint/suspicious/noArrayIndexKey: position is the identity here
+        <code className="inline" key={index}>
+          {part}
+        </code>
+      ) : (
+        part
+      ),
+    )}
+  </>
+)
+
 /** A copy button that says so, and goes quiet again. */
 const Copy = ({ value }: { readonly value: string }) => {
   const [copied, setCopied] = useState(false)
@@ -70,7 +97,11 @@ export const HeroView = ({
         <br />
         {props.headlineBottom}
       </h1>
-      {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+      {props.lead !== undefined && (
+        <p className="lead">
+          <Prose text={props.lead} />
+        </p>
+      )}
       <div className="hero-actions">
         {props.command !== undefined && props.command !== '' && (
           <Terminal command={props.command} />
@@ -221,7 +252,11 @@ export const CardsView = ({
   <section className="cards" id={props.anchor} data-tone={props.tone ?? 'paper'}>
     {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
     {props.heading !== undefined && <h2>{props.heading}</h2>}
-    {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+    {props.lead !== undefined && (
+      <p className="lead">
+        <Prose text={props.lead} />
+      </p>
+    )}
     <div
       className="card-grid"
       data-columns={props.columns ?? 'three'}
@@ -250,7 +285,9 @@ export const CardView = ({
         <span className="badge">{props.badge}</span>
       )}
     </h3>
-    <p>{props.body}</p>
+    <p>
+      <Prose text={props.body ?? ''} />
+    </p>
     {props.code !== undefined && props.code !== '' && (
       <div className="card-code">
         {props.codeComment !== undefined && (
@@ -286,7 +323,11 @@ export const DeclarationView = ({
       <div className="declaration-copy">
         {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
         <h2>{props.heading}</h2>
-        {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+        {props.lead !== undefined && (
+          <p className="lead">
+            <Prose text={props.lead} />
+          </p>
+        )}
 
         {parts.map((part) => (
           <pre className="code-block" key={part.slice(0, 40)}>
@@ -323,7 +364,11 @@ export const MutationView = ({
     {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
     <div className="section-head">
       <h2>{props.heading}</h2>
-      {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+      {props.lead !== undefined && (
+        <p className="lead">
+          <Prose text={props.lead} />
+        </p>
+      )}
     </div>
     {props.pipeline !== undefined && props.pipeline.length > 0 && (
       <ol className="pipeline">
@@ -366,7 +411,11 @@ export const ShowcaseView = ({
       {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
       <div className="section-head">
         <h2>{props.heading}</h2>
-        {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+        {props.lead !== undefined && (
+          <p className="lead">
+            <Prose text={props.lead} />
+          </p>
+        )}
       </div>
 
       {shots.length > 1 && (
@@ -385,9 +434,21 @@ export const ShowcaseView = ({
         </div>
       )}
 
-      {props.address !== undefined && <p className="address">{props.address}</p>}
-      <div className="shots" data-active={active}>
-        {children}
+      {/* The frame is a browser: an address bar, and the screenshot inside it. It says
+          this is a running application rather than a picture of one. */}
+      <div className="frame">
+        <div className="frame-bar">
+          <span className="frame-dots" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          {props.address !== undefined && <span className="address">{props.address}</span>}
+        </div>
+
+        <div className="shots" data-active={active}>
+          {children}
+        </div>
       </div>
     </section>
   )
@@ -421,7 +482,11 @@ export const PackagesView = ({
   <section className="packages" id={props.anchor}>
     {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
     <h2>{props.heading}</h2>
-    {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+    {props.lead !== undefined && (
+      <p className="lead">
+        <Prose text={props.lead} />
+      </p>
+    )}
     <ul className="package-list">{children}</ul>
   </section>
 )
@@ -448,7 +513,11 @@ export const ComparisonView = ({
   <section className="comparison">
     {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
     <h2>{props.heading}</h2>
-    {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+    {props.lead !== undefined && (
+      <p className="lead">
+        <Prose text={props.lead} />
+      </p>
+    )}
     <div className="table-scroll">
       <table>
         <thead>
@@ -501,7 +570,11 @@ export const StartView = ({
     <div className="start-panel">
       <div className="start-copy">
         <h2>{props.heading}</h2>
-        {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+        {props.lead !== undefined && (
+          <p className="lead">
+            <Prose text={props.lead} />
+          </p>
+        )}
         {props.command !== undefined && props.command !== '' && (
           <Terminal command={props.command} />
         )}
