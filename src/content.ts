@@ -623,4 +623,554 @@ export const COPY = {
       secondaryLabel: 'Читать руководство',
     },
   },
+  de: {
+    hero: {
+      eyebrow: 'TypeScript-Framework · CMS · MCP-Server',
+      headlineTop: 'Ein Agent schlägt vor.',
+      headlineBottom: 'Ein Mensch wendet an.',
+      lead: 'Eine Anwendungsschicht, auf drei Wegen erreichbar: Entwickler über TypeScript, Redakteure über Studio, KI-Agenten über MCP. Jeder Befehl ist bereits ein Werkzeug. Was ein Agent schreibt, wird zu einem Änderungssatz, den ein Mensch prüft — erzeugt, indem der echte Befehl ausgeführt und zurückgerollt wird. Die Vorschau kann dem Schreibvorgang, den sie vorhersagt, also nicht widersprechen.',
+      actionLabel: 'Zum Handbuch',
+      meta: ['Node 24 LTS', 'PostgreSQL', '24 Pakete', 'Apache-2.0'],
+    },
+    proposals: {
+      title: 'Vorschläge',
+      ranStep: '→ Befehl läuft wirklich, in einer Transaktion',
+      rolledStep: '→ Transaktion zurückgerollt.',
+      rolledEmphasis: 'noch hat sich nichts geändert.',
+      diffLabel: 'hero — Untertitel geändert',
+      removed:
+        '- Entwickler schreiben TypeScript, Menschen redigieren in Studio, Agenten schlagen Änderungen vor.',
+      added:
+        '+ Ein Agent schlägt vor. Ein Mensch wendet an. Die Vorschau ist der Schreibvorgang, zurückgerollt.',
+      waiting: 'wartet auf einen Menschen',
+      rejectLabel: 'Ablehnen',
+      applyLabel: 'Anwenden',
+      appliedNote: '✓ angewendet von ada@assemora.dev · Home ist jetzt v12',
+      rejectedNote: '✕ abgelehnt. Produktion unberührt.',
+      caption:
+        'Die Zeile unter einem Vorschlag wird aus einem echten Diff gelesen. Es gibt keinen zweiten Codepfad, also kann sie nicht lügen.',
+    },
+    authors: {
+      eyebrow: 'Drei Arten von Autor',
+      heading:
+        'Entwickler, Redakteur und Agent erreichen denselben Bus. Keiner von ihnen hat eigene Geschäftslogik.',
+      cards: [
+        {
+          title: 'Entwickler',
+          body: 'Eine Datenschicht in Eloquent-Form, typisierte Routen und ein CMS — ohne ein Zod-Schema, eine Drizzle-Tabelle, ein Formular, einen OpenAPI-Pfad und ein MCP-Werkzeug, die alle dasselbe Feld beschreiben.',
+        },
+        {
+          title: 'Redakteur',
+          body: 'Studio: Listen, Formulare, Medien, ein Seitenbaukasten und eine Revisionshistorie. Nichts davon wird konfiguriert. Studio fragt die Schema-Registry, was existiert, und stellt genau das dar.',
+        },
+        {
+          title: 'Agent',
+          body: 'Jeder Befehl und jede Abfrage ist bereits ein Werkzeug, erzeugt aus der Registry — niemand pflegt eine Liste. Dieselbe Validierung, dieselben Rechte, Richtlinien, Feldrechte und Protokollierung wie bei einem Menschen.',
+        },
+      ],
+    },
+    declaration: {
+      eyebrow: 'Eine Deklaration',
+      heading: 'Ein Feld einmal deklarieren. Jede Zeile ändert sich mit.',
+      lead: 'Ein Modell und eine Ressource werden zu einer Migration, einem Datensatztyp, einer typisierten Abfrage, zu REST, OpenAPI, einem erzeugten SDK, einem Studio-Bildschirm und einem MCP-Werkzeug. Nirgends steht eine zweite Beschreibung eines Artikels.',
+      results: [
+        'die Migration, die articles anlegt',
+        'der Datensatztyp, mit published: boolean',
+        "eine typisierte Abfrage; where('publsihed', …) kompiliert nicht",
+        'REST, gefiltert, durchsucht und seitenweise',
+        'das OpenAPI-3.1-Dokument',
+        'api.articles.list({ filters: { published: true } })',
+        'die Liste, das Formular, der Filter und die Suche',
+        'das MCP-Werkzeug, das ein Agent aufruft, mit demselben Schema',
+      ],
+    },
+    mutation: {
+      eyebrow: 'Der Mutationspfad',
+      heading: 'Es gibt genau einen Weg, Zustand zu ändern, und jeder Aufrufer nimmt ihn.',
+      lead: '„Darf ein Agent das?“ hat damit dieselbe Antwort wie „darf dieser Mensch das?“, und niemand implementiert die Frage zweimal. Die sieben Prüfungen werden für Agenten nicht neu geschrieben. Ein Werkzeugaufruf ist derselbe Bus-Aufruf, den Studio macht.',
+    },
+    steps: [
+      {
+        title: 'Wirklich ausführen',
+        body: 'Ein mutierendes Werkzeug führt den Befehl in einer Transaktion aus — mit Validierung, Rechten, Richtlinien, allem.',
+      },
+      {
+        title: 'Zurückrollen',
+        body: 'Die Transaktion wird zurückgerollt. Gespeichert wird das Diff — ein Änderungssatz unter einem Titel, den der Agent gewählt hat.',
+      },
+      {
+        title: 'Ein Mensch entscheidet',
+        body: 'Die Produktion ändert sich, wenn jemand es in Studio anwendet. Ein Vorschlag auf eine seither geänderte Seite wird abgelehnt, nicht darübergelegt.',
+      },
+      {
+        title: 'Abschalten, wenn es sein muss',
+        body: "mcp: { mutations: 'direct' } ist die eine Zeile, die einen Agenten direkt schreiben lässt.",
+      },
+    ],
+    showcase: {
+      heading:
+        'Keine Liste von Kollektionen. Kein handgeschriebenes Formular. Keine Liste von Blocktypen.',
+      lead: 'Füge resource(Dish, …) der Anwendung hinzu, und es erscheint im Dashboard, in der Seitenleiste, in der Befehlspalette und im API-Explorer — ohne eine einzige Änderung an Studio. Seiten sind ein Blockbaum, niemals HTML, mit Rückgängig und Wiederholen. Das Theme sind Tokens, und nichts nimmt CSS entgegen.',
+      shots: [
+        {
+          label: 'Seitenbaukasten',
+          caption:
+            'Die Blockgliederung links, die Website vom eigenen Frontend gerendert in der Mitte, die Felder des gewählten Blocks rechts.',
+        },
+        {
+          label: 'Vorschläge',
+          caption:
+            'Ein Änderungssatz, den ein Agent unter eigenem Titel vorgeschlagen hat, aufgeklappt zu einer Zeile pro Änderung, mit Anwenden und Ablehnen.',
+        },
+        {
+          label: 'Dashboard',
+          caption:
+            'Jede Zahl und jede Karte auf dem ersten Bildschirm wird aus der Schema-Registry gelesen.',
+        },
+        {
+          label: 'Theme',
+          caption:
+            'Das Theme als Tokens und das Stylesheet, zu dem sie werden. Nichts nimmt CSS entgegen.',
+        },
+      ],
+    },
+    comparison: {
+      eyebrow: 'Im Vergleich',
+      heading: 'Der Unterschied ist, was ein Werkzeugaufruf tut.',
+      lead: 'Payload, Strapi und Directus liefern jeweils einen MCP-Server, und jeder davon ist gute Arbeit. Ihrer schreibt. Assemoras schlägt vor. Der Rest der Tabelle ist, wo Assemora heute verliert, offen gesagt.',
+      note: 'Stand September 2026, gelesen in der Dokumentation des jeweiligen Projekts. Ist eine Zelle veraltet, ist ein Pull Request willkommen.',
+      rows: [
+        {
+          label: 'Was der Schreibzugriff eines Agenten tut',
+          cells: [
+            'Legt einen Änderungssatz an, den ein Mensch anwendet; Vorschau durch Ausführen und Zurückrollen',
+            'Schreibt direkt; Zugriffsregeln und Hooks greifen',
+            'Schreibt direkt; ein Entwurf, wo Draft & Publish an ist, dann ein publish-Werkzeug',
+            'Schreibt direkt mit den Rechten des Benutzers; Löschschutz ist optional',
+          ],
+        },
+        {
+          label: 'Woher die MCP-Werkzeuge kommen',
+          cells: [
+            'Erzeugt aus der Schema-Registry: eines je Befehl und Abfrage, niemand führt eine Liste',
+            'Offizielles Plugin erzeugt find, create, update, delete je Kollektion',
+            'Eingebaut: list, get, create, update, delete, publish, unpublish je Inhaltstyp',
+            'Offizieller Server',
+          ],
+        },
+        {
+          label: 'Eine Schema-Deklaration speist',
+          cells: [
+            'Typen, Validierung, Datenbank, Studio, OpenAPI, SDK und MCP',
+            'Typen, REST, GraphQL, Admin',
+            'Typen, REST, GraphQL, Admin',
+            'Aus der Datenbank ausgelesen',
+          ],
+        },
+        {
+          label: 'Seiten',
+          cells: [
+            'Ein Blockbaum, niemals HTML, mit Rückgängig und Wiederholen; das Theme sind Tokens und nichts nimmt CSS entgegen',
+            'Blocks-Feld mit Live-Vorschau',
+            'Dynamische Zonen',
+            'Kein Seitenbaukasten',
+          ],
+        },
+        {
+          label: 'Datenbanken',
+          cells: [
+            'Nur PostgreSQL',
+            'PostgreSQL, MongoDB, SQLite',
+            'PostgreSQL, MySQL, MariaDB, SQLite',
+            'PostgreSQL, MySQL, MariaDB, SQLite, MS SQL, Oracle, CockroachDB',
+          ],
+        },
+        {
+          label: 'GraphQL · Realtime',
+          cells: ['Nein · Nein', 'Ja · Nein', 'Plugin · Nein', 'Ja · WebSockets und Subscriptions'],
+        },
+        {
+          label: 'Lizenz',
+          cells: ['Apache-2.0', 'MIT', 'MIT', 'Quelloffen einsehbar (MSCL)'],
+        },
+      ],
+    },
+    packages: {
+      eyebrow: '24 Pakete',
+      heading: 'Feste Grenzen, in der CI geprüft.',
+      lead: 'Die Abhängigkeitsrichtung wird einmal deklariert und von pnpm boundaries geprüft. Eine neue Kante zwischen Paketen braucht ein neues ADR. Das Dachpaket ist das einzige, das von allem abhängen darf, weil nichts von ihm abhängt.',
+    },
+    start: {
+      heading: 'Vier Befehle. Ein Prozess.',
+      lead: 'Es läuft auf einer Datenbank im Arbeitsspeicher, es gibt also nichts zu installieren und nichts aufzuräumen.',
+      actionLabel: 'Auf GitHub ansehen',
+      secondaryLabel: 'Zum Handbuch',
+    },
+  },
+  es: {
+    hero: {
+      eyebrow: 'Framework TypeScript · CMS · servidor MCP',
+      headlineTop: 'Un agente propone.',
+      headlineBottom: 'Una persona aplica.',
+      lead: 'Una sola capa de aplicación, alcanzable de tres maneras: los desarrolladores en TypeScript, los editores en Studio, los agentes de IA por MCP. Cada comando ya es una herramienta. Lo que un agente escribe se convierte en un conjunto de cambios que una persona revisa — obtenido ejecutando el comando real y deshaciéndolo, de modo que la vista previa no puede contradecir la escritura que predice.',
+      actionLabel: 'Leer la guía',
+      meta: ['Node 24 LTS', 'PostgreSQL', '24 paquetes', 'Apache-2.0'],
+    },
+    proposals: {
+      title: 'Propuestas',
+      ranStep: '→ el comando se ejecuta de verdad, dentro de una transacción',
+      rolledStep: '→ transacción deshecha.',
+      rolledEmphasis: 'todavía no ha cambiado nada.',
+      diffLabel: 'hero — subtítulo modificado',
+      removed:
+        '- Los desarrolladores escriben TypeScript, las personas editan en Studio, los agentes proponen cambios.',
+      added: '+ Un agente propone. Una persona aplica. La vista previa es la escritura, deshecha.',
+      waiting: 'esperando a una persona',
+      rejectLabel: 'Rechazar',
+      applyLabel: 'Aplicar',
+      appliedNote: '✓ aplicado por ada@assemora.dev · Home ahora es v12',
+      rejectedNote: '✕ rechazado. producción intacta.',
+      caption:
+        'La línea bajo una propuesta se lee de un diff real. No hay un segundo camino en el código, así que no puede mentir.',
+    },
+    authors: {
+      eyebrow: 'Tres clases de autor',
+      heading:
+        'Desarrollador, editor y agente llegan al mismo bus. Ninguno tiene lógica de negocio propia.',
+      cards: [
+        {
+          title: 'Desarrollador',
+          body: 'Una capa de datos al estilo de Eloquent, rutas tipadas y un CMS — sin un esquema de Zod, una tabla de Drizzle, un formulario, una ruta de OpenAPI y una herramienta MCP que describan todos el mismo campo.',
+        },
+        {
+          title: 'Editor',
+          body: 'Studio: listas, formularios, medios, un constructor de páginas y un historial de revisiones. Nada de eso se configura. Studio pregunta al Registro de Esquemas qué existe y dibuja eso.',
+        },
+        {
+          title: 'Agente',
+          body: 'Cada comando y cada consulta ya es una herramienta, generada desde el registro — nadie mantiene una lista. La misma validación, permisos, políticas, permisos por campo y auditoría que para una persona.',
+        },
+      ],
+    },
+    declaration: {
+      eyebrow: 'Una declaración',
+      heading: 'Declara un campo una vez. Cada fila cambia con él.',
+      lead: 'Un modelo y un recurso se convierten en una migración, un tipo de registro, una consulta tipada, REST, OpenAPI, un SDK generado, una pantalla de Studio y una herramienta MCP. No hay una segunda descripción de un artículo en ninguna parte.',
+      results: [
+        'la migración que crea articles',
+        'el tipo del registro, con published: boolean',
+        "una consulta tipada; where('publsihed', …) no compila",
+        'REST, con filtros, búsqueda y paginación',
+        'el documento OpenAPI 3.1',
+        'api.articles.list({ filters: { published: true } })',
+        'la lista, el formulario, el filtro y el buscador',
+        'la herramienta MCP que llama un agente, con el mismo esquema',
+      ],
+    },
+    mutation: {
+      eyebrow: 'El camino de la mutación',
+      heading: 'Hay exactamente una forma de cambiar el estado, y todo el mundo pasa por ella.',
+      lead: 'Así «¿puede un agente hacer esto?» tiene la misma respuesta que «¿puede esta persona hacer esto?», y nadie implementa la pregunta dos veces. Las siete comprobaciones no se reescriben para los agentes. Una llamada a una herramienta es la misma llamada al bus que hace Studio.',
+    },
+    steps: [
+      {
+        title: 'Ejecutar de verdad',
+        body: 'Una herramienta que muta ejecuta el comando dentro de una transacción — con validación, permisos, políticas y todo lo demás.',
+      },
+      {
+        title: 'Deshacer',
+        body: 'La transacción se deshace. Lo que se guarda es el diff — un conjunto de cambios, bajo un título que eligió el agente.',
+      },
+      {
+        title: 'Decide una persona',
+        body: 'Producción cambia cuando alguien lo aplica en Studio. Una propuesta contra una página que ha cambiado desde entonces se rechaza, no se escribe encima.',
+      },
+      {
+        title: 'Desactivarlo, si hace falta',
+        body: "mcp: { mutations: 'direct' } es la única línea que deja a un agente escribir directamente.",
+      },
+    ],
+    showcase: {
+      heading:
+        'Sin lista de colecciones. Sin formularios escritos a mano. Sin lista de tipos de bloque.',
+      lead: 'Añade resource(Dish, …) a la aplicación y aparece en el panel, en la barra lateral, en la paleta de comandos y en el Explorador de API, sin tocar Studio. Las páginas son un árbol de bloques, nunca HTML, con deshacer y rehacer. El tema son tokens, y nada acepta CSS.',
+      shots: [
+        {
+          label: 'Constructor de páginas',
+          caption:
+            'El esquema de bloques a la izquierda, el sitio dibujado por su propio frontend en el centro, los campos del bloque elegido a la derecha.',
+        },
+        {
+          label: 'Propuestas',
+          caption:
+            'Un conjunto de cambios que un agente propuso bajo su propio título, abierto a una línea por cambio, con Aplicar y Rechazar.',
+        },
+        {
+          label: 'Panel',
+          caption:
+            'Cada número y cada tarjeta de la primera pantalla se leen del Registro de Esquemas.',
+        },
+        {
+          label: 'Tema',
+          caption:
+            'El tema como tokens y la hoja de estilos en que se convierten. Nada acepta CSS.',
+        },
+      ],
+    },
+    comparison: {
+      eyebrow: 'Comparación',
+      heading: 'La diferencia está en lo que hace una llamada a una herramienta.',
+      lead: 'Payload, Strapi y Directus tienen cada uno un servidor MCP, y los tres están bien hechos. El suyo escribe. El de Assemora propone. El resto de la tabla es donde Assemora pierde hoy, dicho sin rodeos.',
+      note: 'A septiembre de 2026, leído en la documentación de cada proyecto. Si una celda está desactualizada, un pull request que la corrija es bienvenido.',
+      rows: [
+        {
+          label: 'Qué hace la escritura de un agente',
+          cells: [
+            'Guarda un conjunto de cambios que una persona aplica; previsto ejecutando y deshaciendo',
+            'Escribe directamente; se aplican reglas de acceso y hooks',
+            'Escribe directamente; un borrador donde Draft & Publish está activo, y luego una herramienta publish',
+            'Escribe directamente con los permisos del usuario; la protección contra borrado es opcional',
+          ],
+        },
+        {
+          label: 'De dónde salen las herramientas MCP',
+          cells: [
+            'Generadas desde el Registro de Esquemas: una por comando y consulta, nadie mantiene una lista',
+            'Un plugin oficial genera find, create, update y delete por colección',
+            'Incorporadas: list, get, create, update, delete, publish, unpublish por tipo de contenido',
+            'Servidor oficial',
+          ],
+        },
+        {
+          label: 'Una declaración de esquema alimenta',
+          cells: [
+            'Tipos, validación, base de datos, Studio, OpenAPI, SDK y MCP',
+            'Tipos, REST, GraphQL, admin',
+            'Tipos, REST, GraphQL, admin',
+            'Se deduce de la base de datos',
+          ],
+        },
+        {
+          label: 'Páginas',
+          cells: [
+            'Un árbol de bloques, nunca HTML, con deshacer y rehacer; el tema son tokens y nada acepta CSS',
+            'Campo de bloques con vista previa en vivo',
+            'Zonas dinámicas',
+            'No es un constructor de páginas',
+          ],
+        },
+        {
+          label: 'Bases de datos',
+          cells: [
+            'Solo PostgreSQL',
+            'PostgreSQL, MongoDB, SQLite',
+            'PostgreSQL, MySQL, MariaDB, SQLite',
+            'PostgreSQL, MySQL, MariaDB, SQLite, MS SQL, Oracle, CockroachDB',
+          ],
+        },
+        {
+          label: 'GraphQL · Tiempo real',
+          cells: ['No · No', 'Sí · No', 'Plugin · No', 'Sí · WebSockets y suscripciones'],
+        },
+        {
+          label: 'Licencia',
+          cells: ['Apache-2.0', 'MIT', 'MIT', 'Código a la vista (MSCL)'],
+        },
+      ],
+    },
+    packages: {
+      eyebrow: '24 paquetes',
+      heading: 'Fronteras fijas, comprobadas en CI.',
+      lead: 'La dirección de las dependencias se declara una vez y la comprueba pnpm boundaries. Una nueva arista entre paquetes necesita un ADR nuevo. El paquete paraguas es el único al que se le permite depender de todo, porque es aquel del que no depende nada.',
+    },
+    start: {
+      heading: 'Cuatro comandos. Un proceso.',
+      lead: 'Funciona sobre una base de datos en memoria, así que no hay nada que instalar ni nada que limpiar después.',
+      actionLabel: 'Ver en GitHub',
+      secondaryLabel: 'Leer la guía',
+    },
+  },
+  fr: {
+    hero: {
+      eyebrow: 'Framework TypeScript · CMS · serveur MCP',
+      headlineTop: 'Un agent propose.',
+      headlineBottom: 'Une personne applique.',
+      lead: "Une seule couche applicative, atteinte de trois façons : les développeurs en TypeScript, les éditeurs dans Studio, les agents IA via MCP. Chaque commande est déjà un outil. Ce qu'un agent écrit devient un ensemble de modifications qu'une personne relit — obtenu en exécutant la vraie commande puis en l'annulant, si bien que l'aperçu ne peut pas contredire l'écriture qu'il prédit.",
+      actionLabel: 'Lire le guide',
+      meta: ['Node 24 LTS', 'PostgreSQL', '24 paquets', 'Apache-2.0'],
+    },
+    proposals: {
+      title: 'Propositions',
+      ranStep: "→ la commande s'exécute pour de vrai, dans une transaction",
+      rolledStep: '→ transaction annulée.',
+      rolledEmphasis: "rien n'a encore changé.",
+      diffLabel: 'hero — sous-titre modifié',
+      removed:
+        '- Les développeurs écrivent du TypeScript, les personnes éditent dans Studio, les agents proposent des modifications.',
+      added: "+ Un agent propose. Une personne applique. L'aperçu est l'écriture, annulée.",
+      waiting: "en attente d'une personne",
+      rejectLabel: 'Refuser',
+      applyLabel: 'Appliquer',
+      appliedNote: '✓ appliqué par ada@assemora.dev · Home est maintenant en v12',
+      rejectedNote: '✕ refusé. production intacte.',
+      caption:
+        "La ligne sous une proposition est lue d'un vrai diff. Il n'y a pas de second chemin dans le code, elle ne peut donc pas mentir.",
+    },
+    authors: {
+      eyebrow: "Trois sortes d'auteur",
+      heading:
+        "Développeur, éditeur et agent atteignent le même bus. Aucun d'eux n'a de logique métier qui lui soit propre.",
+      cards: [
+        {
+          title: 'Développeur',
+          body: "Une couche de données à la façon d'Eloquent, des routes typées et un CMS — sans un schéma Zod, une table Drizzle, un formulaire, un chemin OpenAPI et un outil MCP qui décrivent tous le même champ.",
+        },
+        {
+          title: 'Éditeur',
+          body: 'Studio : listes, formulaires, médias, un constructeur de pages et un historique des révisions. Rien de tout cela ne se configure. Studio demande au Registre de schémas ce qui existe, et affiche cela.',
+        },
+        {
+          title: 'Agent',
+          body: 'Chaque commande et chaque requête est déjà un outil, engendré depuis le registre — personne ne tient de liste. Mêmes validations, mêmes droits, mêmes politiques, mêmes droits par champ et même journalisation que pour une personne.',
+        },
+      ],
+    },
+    declaration: {
+      eyebrow: 'Une déclaration',
+      heading: 'Déclarez un champ une fois. Chaque ligne change avec lui.',
+      lead: "Un modèle et une ressource deviennent une migration, un type d'enregistrement, une requête typée, REST, OpenAPI, un SDK engendré, un écran de Studio et un outil MCP. Il n'existe nulle part une seconde description d'un article.",
+      results: [
+        'la migration qui crée articles',
+        "le type de l'enregistrement, avec published: boolean",
+        "une requête typée ; where('publsihed', …) ne compile pas",
+        'REST, filtré, cherché et paginé',
+        'le document OpenAPI 3.1',
+        'api.articles.list({ filters: { published: true } })',
+        'la liste, le formulaire, le filtre et la recherche',
+        "l'outil MCP qu'un agent appelle, avec le même schéma",
+      ],
+    },
+    mutation: {
+      eyebrow: 'Le chemin de la mutation',
+      heading: "Il y a exactement une façon de changer l'état, et tout appelant l'emprunte.",
+      lead: "Ainsi « un agent peut-il faire ceci ? » a la même réponse que « cette personne peut-elle faire ceci ? », et personne n'implémente la question deux fois. Les sept contrôles ne sont pas réécrits pour les agents. Un appel d'outil est le même appel au bus que fait Studio.",
+    },
+    steps: [
+      {
+        title: 'Exécuter pour de vrai',
+        body: 'Un outil qui modifie exécute la commande dans une transaction — validation, droits, politiques, tout compris.',
+      },
+      {
+        title: 'Annuler',
+        body: "La transaction est annulée. Ce qui est enregistré, c'est le diff — un ensemble de modifications, sous un titre choisi par l'agent.",
+      },
+      {
+        title: 'Une personne décide',
+        body: "La production change quand quelqu'un l'applique dans Studio. Une proposition portant sur une page modifiée depuis est refusée, et non écrite par-dessus.",
+      },
+      {
+        title: "S'en passer, s'il le faut",
+        body: "mcp: { mutations: 'direct' } est la seule ligne qui laisse un agent écrire directement.",
+      },
+    ],
+    showcase: {
+      heading:
+        'Aucune liste de collections. Aucun formulaire écrit à la main. Aucune liste de types de blocs.',
+      lead: "Ajoutez resource(Dish, …) à l'application et cela apparaît sur le tableau de bord, dans la barre latérale, dans la palette de commandes et dans l'explorateur d'API, sans toucher à Studio. Les pages sont un arbre de blocs, jamais du HTML, avec annuler et rétablir. Le thème, ce sont des jetons, et rien n'accepte de CSS.",
+      shots: [
+        {
+          label: 'Constructeur de pages',
+          caption:
+            'Le plan des blocs à gauche, le site rendu par son propre frontend au centre, les champs du bloc choisi à droite.',
+        },
+        {
+          label: 'Propositions',
+          caption:
+            'Un ensemble de modifications proposé par un agent sous son propre titre, déplié à une ligne par modification, avec Appliquer et Refuser.',
+        },
+        {
+          label: 'Tableau de bord',
+          caption:
+            'Chaque nombre et chaque carte du premier écran sont lus dans le Registre de schémas.',
+        },
+        {
+          label: 'Thème',
+          caption:
+            "Le thème comme jetons, et la feuille de style qu'ils produisent. Rien n'accepte de CSS.",
+        },
+      ],
+    },
+    comparison: {
+      eyebrow: 'Comparaison',
+      heading: "La différence tient à ce que fait un appel d'outil.",
+      lead: "Payload, Strapi et Directus livrent chacun un serveur MCP, et chacun est du bon travail. Le leur écrit. Celui d'Assemora propose. Le reste du tableau, c'est là où Assemora perd aujourd'hui, dit franchement.",
+      note: "En septembre 2026, d'après la documentation de chaque projet. Si une case est périmée, une pull request qui la corrige est la bienvenue.",
+      rows: [
+        {
+          label: "Ce que fait l'écriture d'un agent",
+          cells: [
+            "Enregistre un ensemble de modifications qu'une personne applique ; prévu en exécutant puis en annulant",
+            "Écrit directement ; les règles d'accès et les hooks s'appliquent",
+            'Écrit directement ; un brouillon là où Draft & Publish est actif, puis un outil publish',
+            "Écrit directement avec les droits de l'utilisateur ; la protection contre la suppression est optionnelle",
+          ],
+        },
+        {
+          label: "D'où viennent les outils MCP",
+          cells: [
+            'Engendrés depuis le Registre de schémas : un par commande et par requête, personne ne tient de liste',
+            'Un plugin officiel engendre find, create, update, delete par collection',
+            'Intégrés : list, get, create, update, delete, publish, unpublish par type de contenu',
+            'Serveur officiel',
+          ],
+        },
+        {
+          label: 'Une déclaration de schéma alimente',
+          cells: [
+            'Types, validation, base de données, Studio, OpenAPI, SDK et MCP',
+            'Types, REST, GraphQL, admin',
+            'Types, REST, GraphQL, admin',
+            'Déduit de la base de données',
+          ],
+        },
+        {
+          label: 'Pages',
+          cells: [
+            "Un arbre de blocs, jamais du HTML, avec annuler et rétablir ; le thème est en jetons et rien n'accepte de CSS",
+            'Champ de blocs avec aperçu en direct',
+            'Zones dynamiques',
+            'Pas un constructeur de pages',
+          ],
+        },
+        {
+          label: 'Bases de données',
+          cells: [
+            'PostgreSQL uniquement',
+            'PostgreSQL, MongoDB, SQLite',
+            'PostgreSQL, MySQL, MariaDB, SQLite',
+            'PostgreSQL, MySQL, MariaDB, SQLite, MS SQL, Oracle, CockroachDB',
+          ],
+        },
+        {
+          label: 'GraphQL · Temps réel',
+          cells: ['Non · Non', 'Oui · Non', 'Plugin · Non', 'Oui · WebSockets et souscriptions'],
+        },
+        {
+          label: 'Licence',
+          cells: ['Apache-2.0', 'MIT', 'MIT', 'Source consultable (MSCL)'],
+        },
+      ],
+    },
+    packages: {
+      eyebrow: '24 paquets',
+      heading: 'Des frontières fixes, vérifiées en CI.',
+      lead: "Le sens des dépendances est déclaré une fois et vérifié par pnpm boundaries. Une nouvelle arête entre paquets demande un nouvel ADR. Le paquet parapluie est le seul autorisé à dépendre de tout, parce que c'est celui dont rien ne dépend.",
+    },
+    start: {
+      heading: 'Quatre commandes. Un processus.',
+      lead: "Cela tourne sur une base de données en mémoire : il n'y a donc rien à installer et rien à nettoyer.",
+      actionLabel: 'Voir sur GitHub',
+      secondaryLabel: 'Lire le guide',
+    },
+  },
 } as const satisfies Readonly<Record<string, Copy>>

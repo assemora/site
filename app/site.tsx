@@ -51,7 +51,7 @@ export const blocks = createBlockRegistry(
 )
 
 /** The languages this deployment serves, and the one it falls back to (SPEC.md §131). */
-export const LOCALES = ['en', 'uk', 'ru'] as const
+export const LOCALES = ['en', 'uk', 'ru', 'de', 'es', 'fr'] as const
 export type Locale = (typeof LOCALES)[number]
 
 /** What each language calls itself. A list of languages in one language is a list for one reader. */
@@ -59,6 +59,9 @@ const LANGUAGE_NAMES: Readonly<Record<Locale, string>> = {
   en: 'English',
   uk: 'Українська',
   ru: 'Русский',
+  de: 'Deutsch',
+  es: 'Español',
+  fr: 'Français',
 }
 export const DEFAULT_LOCALE: Locale = 'en'
 

@@ -63,7 +63,7 @@ export const createApp = (): AssemoraApplication =>
      * every route stays declared once and the Ukrainian site is the same site read in
      * Ukrainian. Studio's own language is a separate control (ADR-0030).
      */
-    locales: ['en', 'uk', 'ru'],
+    locales: ['en', 'uk', 'ru', 'de', 'es', 'fr'],
     defaultLocale: 'en',
     studio: { root: studioAssets() },
     mcp: true,
