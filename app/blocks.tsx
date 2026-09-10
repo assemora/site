@@ -51,6 +51,7 @@ const Terminal = ({ command }: { readonly command: string }) => (
 
 export const HeroView = ({
   props,
+  children,
 }: BlockViewProps<{
   readonly eyebrow?: string
   readonly headlineTop?: string
@@ -62,28 +63,34 @@ export const HeroView = ({
   readonly meta?: readonly string[]
 }>) => (
   <header className="hero">
-    {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
-    <h1>
-      {props.headlineTop}
-      <br />
-      {props.headlineBottom}
-    </h1>
-    {props.lead !== undefined && <p className="lead">{props.lead}</p>}
-    <div className="hero-actions">
-      {props.command !== undefined && props.command !== '' && <Terminal command={props.command} />}
-      {props.actionLabel !== undefined && props.actionHref !== undefined && (
-        <a className="link-arrow" href={props.actionHref}>
-          {props.actionLabel} <span aria-hidden="true">→</span>
-        </a>
+    <div className="hero-copy">
+      {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
+      <h1>
+        {props.headlineTop}
+        <br />
+        {props.headlineBottom}
+      </h1>
+      {props.lead !== undefined && <p className="lead">{props.lead}</p>}
+      <div className="hero-actions">
+        {props.command !== undefined && props.command !== '' && (
+          <Terminal command={props.command} />
+        )}
+        {props.actionLabel !== undefined && props.actionHref !== undefined && (
+          <a className="link-arrow" href={props.actionHref}>
+            {props.actionLabel} <span aria-hidden="true">→</span>
+          </a>
+        )}
+      </div>
+      {props.meta !== undefined && props.meta.length > 0 && (
+        <p className="meta">
+          {props.meta.map((fact) => (
+            <span key={fact}>{fact}</span>
+          ))}
+        </p>
       )}
     </div>
-    {props.meta !== undefined && props.meta.length > 0 && (
-      <p className="meta">
-        {props.meta.map((fact) => (
-          <span key={fact}>{fact}</span>
-        ))}
-      </p>
-    )}
+
+    {children}
   </header>
 )
 
@@ -209,8 +216,9 @@ export const CardsView = ({
   readonly columns?: string
   readonly tone?: string
   readonly numbered?: string
+  readonly anchor?: string
 }>) => (
-  <section className="cards" data-tone={props.tone ?? 'paper'}>
+  <section className="cards" id={props.anchor} data-tone={props.tone ?? 'paper'}>
     {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
     {props.heading !== undefined && <h2>{props.heading}</h2>}
     {props.lead !== undefined && <p className="lead">{props.lead}</p>}
@@ -290,8 +298,9 @@ export const MutationView = ({
   readonly lead?: string
   readonly pipeline?: readonly string[]
   readonly loop?: { readonly language?: string; readonly source?: string }
+  readonly anchor?: string
 }>) => (
-  <section className="mutation">
+  <section className="mutation" id={props.anchor}>
     {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
     <h2>{props.heading}</h2>
     {props.lead !== undefined && <p className="lead">{props.lead}</p>}
@@ -326,12 +335,13 @@ export const ShowcaseView = ({
   readonly heading?: string
   readonly lead?: string
   readonly address?: string
+  readonly anchor?: string
 }>) => {
   const [active, setActive] = useState(0)
   const shots = block.children
 
   return (
-    <section className="showcase">
+    <section className="showcase" id={props.anchor}>
       {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
       <h2>{props.heading}</h2>
       {props.lead !== undefined && <p className="lead">{props.lead}</p>}
@@ -383,8 +393,9 @@ export const PackagesView = ({
   readonly eyebrow?: string
   readonly heading?: string
   readonly lead?: string
+  readonly anchor?: string
 }>) => (
-  <section className="packages">
+  <section className="packages" id={props.anchor}>
     {props.eyebrow !== undefined && <p className="eyebrow">{props.eyebrow}</p>}
     <h2>{props.heading}</h2>
     {props.lead !== undefined && <p className="lead">{props.lead}</p>}
@@ -461,8 +472,9 @@ export const StartView = ({
   readonly actionHref?: string
   readonly secondaryLabel?: string
   readonly secondaryHref?: string
+  readonly anchor?: string
 }>) => (
-  <section className="start">
+  <section className="start" id={props.anchor}>
     <div className="start-panel">
       <div className="start-copy">
         <h2>{props.heading}</h2>

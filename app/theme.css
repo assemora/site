@@ -200,6 +200,21 @@ main > .assemora-design > * {
   color: var(--accent);
 }
 
+.nav-cta {
+  flex-shrink: 0;
+  background: var(--ink);
+  color: var(--panel);
+  border-radius: var(--radius-full);
+  padding: 10px 18px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.nav-cta:hover {
+  background: var(--accent);
+  color: var(--panel);
+}
+
 .languages {
   display: flex;
   gap: 2px;
@@ -257,7 +272,8 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.75rem, 5.6vw, 5.25rem);
+  /* 46px to 84px, which is 79px at 1280 — the size the design sets it at. */
+  font-size: clamp(2.875rem, 6.2vw, 5.25rem);
   font-weight: var(--weight-bold);
   line-height: var(--leading-display);
   letter-spacing: -0.035em;
@@ -412,6 +428,29 @@ pre {
 }
 
 /* --- hero ------------------------------------------------------------------ */
+
+/*
+ * The hero is two columns, and the panel is the second.
+ *
+ * They are one section in the design and one block in the tree: `hero` accepts a
+ * `proposals` child, so the arrangement is something the page states rather than
+ * something two adjacent sections happen to look like.
+ */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.hero .lead {
+  max-width: none;
+}
+
+/* Inside the hero it is a column, not a section: its own rhythm is the hero's. */
+.hero .proposals {
+  margin: 0;
+}
 
 .hero-actions {
   display: flex;
@@ -1001,6 +1040,13 @@ pre {
 }
 
 /* --- narrow screens -------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
 
 @media (max-width: 900px) {
   .start-panel {

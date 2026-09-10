@@ -26,7 +26,15 @@ export const Hero = block(
     actionHref: text().label('Link'),
     meta: array(text()).label('Meta').help('The short facts under the command'),
   },
-  { label: 'Hero', description: 'The top of the page', icon: 'panel-top' },
+  {
+    label: 'Hero',
+    description: 'The top of the page',
+    icon: 'panel-top',
+    // The panel beside it, rather than under it — one section, two columns.
+    acceptsChildren: true,
+    allowedChildren: ['proposals'],
+    maxChildren: 1,
+  },
 )
 
 /**
@@ -67,6 +75,7 @@ export const Proposals = block(
 export const Cards = block(
   'cards',
   {
+    anchor: text().label('Anchor').help('The id the navigation links to'),
     eyebrow: text().label('Eyebrow'),
     heading: text().label('Heading'),
     lead: textarea().label('Lead'),
@@ -118,6 +127,7 @@ export const Declaration = block(
 export const Mutation = block(
   'mutation',
   {
+    anchor: text().label('Anchor').help('The id the navigation links to'),
     eyebrow: text().label('Eyebrow'),
     heading: text().required().label('Heading'),
     lead: textarea().label('Lead'),
@@ -135,6 +145,7 @@ export const Mutation = block(
 export const Showcase = block(
   'showcase',
   {
+    anchor: text().label('Anchor').help('The id the navigation links to'),
     eyebrow: text().label('Eyebrow'),
     heading: text().required().label('Heading'),
     lead: textarea().label('Lead'),
@@ -167,6 +178,7 @@ export const Shot = block(
 export const Packages = block(
   'packages',
   {
+    anchor: text().label('Anchor').help('The id the navigation links to'),
     eyebrow: text().label('Eyebrow'),
     heading: text().required().label('Heading'),
     lead: textarea().label('Lead'),
@@ -219,6 +231,7 @@ export const Comparison = block(
 export const Start = block(
   'start',
   {
+    anchor: text().label('Anchor').help('The id the navigation links to'),
     heading: text().required().label('Heading'),
     lead: textarea().label('Lead'),
     command: text().label('Command'),

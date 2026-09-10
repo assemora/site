@@ -132,9 +132,11 @@ const Chrome = ({
           Assemora
         </a>
         <div className="nav-links">
+          <a href="#authors">Authors</a>
+          <a href="#studio">Studio</a>
+          <a href="#agents">Agents</a>
+          <a href="#packages">Packages</a>
           <a href="https://github.com/assemora/assemora">GitHub</a>
-          <a href="https://github.com/assemora/assemora/tree/main/docs/guide">Guide</a>
-          <a href="https://github.com/assemora/assemora/blob/main/SPEC.md">Spec</a>
         </div>
         <div className="languages">
           {LOCALES.map((option) => (
@@ -147,6 +149,10 @@ const Chrome = ({
             </a>
           ))}
         </div>
+
+        <a className="nav-cta" href="#start">
+          Get started
+        </a>
       </div>
     </nav>
 

@@ -336,6 +336,7 @@ const comparisonProps = (copy: Copy) => ({
 
 const startProps = (copy: Copy) => ({
   ...copy.start,
+  anchor: 'start',
   command: COMMAND,
   transcript: { language: 'text', source: SESSION },
   actionHref: REPOSITORY,
@@ -369,18 +370,14 @@ const build = async (
 
   await design(app, page, hero, {
     spacingTop: 'xl',
-    spacingBottom: 'none',
-    container: 'wide',
-  })
-
-  const proposals = await add(app, page, 'proposals', proposalsProps(copy))
-
-  await design(app, page, proposals, {
     spacingBottom: 'lg',
     container: 'wide',
   })
 
+  const proposals = await add(app, page, 'proposals', proposalsProps(copy), hero)
+
   const authors = await add(app, page, 'cards', {
+    anchor: 'authors',
     eyebrow: copy.authors.eyebrow,
     heading: copy.authors.heading,
     columns: 'three',
@@ -421,7 +418,10 @@ const build = async (
     container: 'wide',
   })
 
-  const mutation = await add(app, page, 'mutation', mutationProps(copy))
+  const mutation = await add(app, page, 'mutation', {
+    ...mutationProps(copy),
+    anchor: 'agents',
+  })
 
   await design(app, page, mutation, {
     spacingTop: '2xl',
@@ -450,6 +450,7 @@ const build = async (
   }
 
   const showcase = await add(app, page, 'showcase', {
+    anchor: 'studio',
     eyebrow: 'Studio',
     heading: copy.showcase.heading,
     lead: copy.showcase.lead,
@@ -477,7 +478,10 @@ const build = async (
     background: 'panel',
   })
 
-  const packages = await add(app, page, 'packages', { ...copy.packages })
+  const packages = await add(app, page, 'packages', {
+    ...copy.packages,
+    anchor: 'packages',
+  })
 
   await design(app, page, packages, {
     spacingTop: 'xl',
@@ -528,6 +532,7 @@ const apply = async (app: Application, page: string, placed: Placed, copy: Copy)
   await update(app, page, placed.hero, heroProps(copy))
   await update(app, page, placed.proposals, proposalsProps(copy))
   await update(app, page, placed.authors, {
+    anchor: 'authors',
     eyebrow: copy.authors.eyebrow,
     heading: copy.authors.heading,
     columns: 'three',
@@ -548,7 +553,7 @@ const apply = async (app: Application, page: string, placed: Placed, copy: Copy)
   }
 
   await update(app, page, placed.declaration, declarationProps(copy))
-  await update(app, page, placed.mutation, mutationProps(copy))
+  await update(app, page, placed.mutation, { ...mutationProps(copy), anchor: 'agents' })
 
   for (const [index, step] of copy.steps.entries()) {
     const blockId = placed.stepCards[index]
@@ -557,6 +562,7 @@ const apply = async (app: Application, page: string, placed: Placed, copy: Copy)
   }
 
   await update(app, page, placed.showcase, {
+    anchor: 'studio',
     eyebrow: 'Studio',
     heading: copy.showcase.heading,
     lead: copy.showcase.lead,
@@ -575,7 +581,7 @@ const apply = async (app: Application, page: string, placed: Placed, copy: Copy)
   }
 
   await update(app, page, placed.comparison, comparisonProps(copy))
-  await update(app, page, placed.packages, { ...copy.packages })
+  await update(app, page, placed.packages, { ...copy.packages, anchor: 'packages' })
   await update(app, page, placed.start, startProps(copy))
 }
 
