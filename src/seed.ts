@@ -100,6 +100,8 @@ const brand = (app: Application) =>
       'ink-deep': '#111111',
       'ink-soft': '#5b6070',
       'ink-mute': '#8a8f9c',
+      // Lighter than a caption: body text on ink, which the design sets apart.
+      'ink-faint': '#a7abb6',
       paper: '#f3f4f7',
       panel: '#ffffff',
       accent: '#29845a',

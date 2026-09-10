@@ -647,8 +647,9 @@ pre {
   background: var(--panel);
 }
 
+/* 16px, which is the top of the design system's body range and what a card uses. */
 .card p {
-  font-size: var(--text-sm);
+  font-size: 1rem;
   line-height: var(--leading-normal);
   color: var(--ink-soft);
   margin: 10px 0 0;
@@ -657,21 +658,24 @@ pre {
 .badge {
   margin-left: 10px;
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: var(--weight-semibold);
+  font-size: 11px;
+  font-weight: var(--weight-bold);
   letter-spacing: 0.06em;
-  padding: 3px 7px;
+  padding: 3px 8px;
   border-radius: var(--radius-full);
-  background: var(--green-tint);
-  color: var(--accent-deep);
+  background: var(--accent);
+  color: var(--panel);
   vertical-align: middle;
 }
 
 .card-code {
   margin-top: 18px;
-  padding: 12px 14px;
+  padding: 16px;
   border-radius: 12px;
   background: var(--ink);
+  /* Its own colour, rather than the page's ink inherited onto near-black. Written
+     out because it is what a chip on ink is, not a token the theme carries. */
+  color: #e6e8ee;
   font-size: 12.5px;
   line-height: var(--leading-relaxed);
   display: flex;
@@ -705,7 +709,7 @@ pre {
 }
 
 .card[data-tone="ink"] p {
-  color: var(--ink-mute);
+  color: var(--ink-faint);
 }
 
 .card[data-tone="ink"] .card-code {
