@@ -461,11 +461,20 @@ pre {
   background: var(--paper);
 }
 
+/*
+ * On ink it is set, not boxed.
+ *
+ * A chip needs a ground to sit on and a border to sit inside; against black both are
+ * another rectangle in a section already full of them. The design sets the code in
+ * white mono and lets the face do the distinguishing.
+ */
 .card p .inline,
 .mutation .inline,
 .start-panel .inline {
-  border-color: var(--line-on-ink);
-  background: var(--ink-raised);
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
   color: var(--panel);
 }
 
@@ -796,10 +805,16 @@ pre {
   background: var(--panel);
 }
 
-/* Inside a framed grid a card has no corner of its own: the frame holds them. */
-.card-grid[data-seam="1"] .card {
+/*
+ * Inside a framed grid a card has no corner of its own — the frame holds them — and
+ * it must be opaque. The seams are the grid's lighter ground showing through 1px
+ * gaps; a transparent cell shows that ground everywhere, and the whole block becomes
+ * one flat panel with no divisions at all.
+ */
+.cards[data-tone="ink"] .card-grid[data-seam="1"] .card {
   border: 0;
   border-radius: 0;
+  background: var(--ink);
 }
 
 /* 16px, which is the top of the design system's body range and what a card uses. */
