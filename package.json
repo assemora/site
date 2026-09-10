@@ -18,22 +18,22 @@
     "format": "biome check --write"
   },
   "dependencies": {
-    "@assemora/auth": "^0.2.4",
-    "@assemora/core": "^0.2.4",
-    "@assemora/database": "^0.2.4",
-    "@assemora/database-postgres": "^0.2.4",
-    "@assemora/http": "^0.2.4",
-    "@assemora/pages": "^0.2.4",
-    "@assemora/react": "^0.2.4",
-    "@assemora/resources": "^0.2.4",
-    "@assemora/schema": "^0.2.4",
-    "@assemora/studio": "^0.2.4",
-    "assemora": "^0.2.4",
+    "@assemora/auth": "^0.2.5",
+    "@assemora/core": "^0.2.5",
+    "@assemora/database": "^0.2.5",
+    "@assemora/database-postgres": "^0.2.5",
+    "@assemora/http": "^0.2.5",
+    "@assemora/pages": "^0.2.5",
+    "@assemora/react": "^0.2.5",
+    "@assemora/resources": "^0.2.5",
+    "@assemora/schema": "^0.2.5",
+    "@assemora/studio": "^0.2.5",
+    "assemora": "^0.2.5",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@assemora/cli": "^0.2.4",
+    "@assemora/cli": "^0.2.5",
     "@biomejs/biome": "2.5.10",
     "@types/node": "24.13.3",
     "@types/react": "19.2.18",
@@ -44,6 +44,6 @@
   },
   "packageManager": "pnpm@10.6.4",
   "engines": {
-    "node": ">=24.11.0"
+    "node": ">=24.0.0"
   }
 }
