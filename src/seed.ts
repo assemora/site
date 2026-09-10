@@ -33,7 +33,7 @@ import { remember } from './env.ts'
 const ADMIN = 'admin@assemora.com'
 
 /** The languages this deployment serves, beside the one it is written in first. */
-const TRANSLATIONS = ['uk', 'ru', 'de', 'es', 'fr'] as const
+const TRANSLATIONS = ['de', 'es', 'fr', 'uk', 'ru'] as const
 
 const seedPassword = async (): Promise<string> => {
   const declared = process.env.ASSEMORA_SEED_PASSWORD
