@@ -9,38 +9,38 @@ importers:
   .:
     dependencies:
       '@assemora/auth':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@assemora/core':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@assemora/database':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@assemora/database-postgres':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@assemora/http':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@assemora/pages':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@assemora/react':
-        specifier: ^0.2.5
-        version: 0.2.5(react@19.2.8)
+        specifier: ^0.2.6
+        version: 0.2.6(react@19.2.8)
       '@assemora/resources':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@assemora/schema':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@assemora/studio':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       assemora:
-        specifier: ^0.2.5
-        version: 0.2.5(zod@4.5.4)
+        specifier: ^0.2.6
+        version: 0.2.6(zod@4.5.4)
       marked:
         specifier: 18.0.11
         version: 18.0.11
@@ -52,8 +52,8 @@ importers:
         version: 19.2.8(react@19.2.8)
     devDependencies:
       '@assemora/cli':
-        specifier: ^0.2.5
-        version: 0.2.5
+        specifier: ^0.2.6
+        version: 0.2.6
       '@biomejs/biome':
         specifier: 2.5.10
         version: 2.5.10
@@ -78,68 +78,68 @@ importers:
 
 packages:
 
-  '@assemora/audit@0.2.5':
-    resolution: {integrity: sha512-wuLmZulG48GGHUmJ6hpnzsk2zA9IK16C40P5YsJqN1S6mC0N7d5GKJN19/uBZBTOyIe0WwHpYhC/QMlAWVMOuw==}
+  '@assemora/audit@0.2.6':
+    resolution: {integrity: sha512-GKYeEA4I3qa09dOp8pipaCYihWsekaTv20Gxe0ayEeWEptFm8aWtN5ZHKWSP2CT0i4+fkI4ueKhaE79/GScQeg==}
 
-  '@assemora/auth@0.2.5':
-    resolution: {integrity: sha512-WU1EJSyfsCYtPhGswsX54Sm9NIOzMyYt0js6DDIaK3509xxf07yeRes+YaJiNpnKIoeSorumdGyswVP+7unXqA==}
+  '@assemora/auth@0.2.6':
+    resolution: {integrity: sha512-kroq/732HqlymjL2ZgMM0k0WopVotLvaRP9lDzOd618ilb9Pm+WyXuCrNsRIpWz5ho1DALqU9vSv5KJG1aslCg==}
 
-  '@assemora/change-sets@0.2.5':
-    resolution: {integrity: sha512-jrym+FfuScUN0BXE0kw+VBXsCgMekW0b63TxySx1B4F+QsRza9nd4/TERwJuYRlcNiCX3yZi98GfbPNQi9RNZA==}
+  '@assemora/change-sets@0.2.6':
+    resolution: {integrity: sha512-NMJGW3CQ4pyUzKjlSrXsKkQY2I9vTcUCKIfCLItU4iKWPqjMpdtze7LY9SQW2G9KX+LswJhHQdnOyj7llSNW5Q==}
 
-  '@assemora/cli@0.2.5':
-    resolution: {integrity: sha512-93GufCe8hQ8SMeh4Ejz3ETq5zvEwkb6+BnJFYDfPJ9m3ZzzBbqn9BSQJQ80qjmlIrVB0LkJ9rp/Wnw8SfBPYgw==}
+  '@assemora/cli@0.2.6':
+    resolution: {integrity: sha512-JTrhqg3lpVAKcY+1GkXDLZ93ZS5SvK65sQIlVHG8W5XSNjWAfUqYCaCq2Q/ER95Uhfm7ODS/9gC0ssJCzfm4cg==}
     hasBin: true
 
-  '@assemora/core@0.2.5':
-    resolution: {integrity: sha512-fJDCrBFa476fEfs/HSxn3kTYeifXmv6wr4PaNMZM9zU64t3otQ+R4pgacWnl2A2IPVOlqIVXravymSssEK9Uqw==}
+  '@assemora/core@0.2.6':
+    resolution: {integrity: sha512-teQCRmpZLdXdAu1EDBpogFTxKTyHkzm3CtgeYgOKLNGDgRMIAhpgrmxn/aqPSBHdSO3wvsUHhU6wi3zGrEHNKA==}
 
-  '@assemora/data@0.2.5':
-    resolution: {integrity: sha512-mVOxw7xfVatWDVcO0YQAzThigJjb/k6uJugLXZAIpnm9iYIi1AC2EphLX/jrVPZ9C47VErE0s4OlvmNTBv2JVA==}
+  '@assemora/data@0.2.6':
+    resolution: {integrity: sha512-xpVM8sqXkkBppfegSgTBBnXi1vFCtnHZX2+sT9Sjj4S/qEFKRbr94ewEsV5f//F5tw0dJJkIwuTH7UBZ0SFqvA==}
 
-  '@assemora/database-postgres@0.2.5':
-    resolution: {integrity: sha512-rCN9/qVN8JjX8cGQPITTYEG3JmvPwc0d4XsEgmuhh+iiOgDZ1wHOY2rxk961QfN9DRTwAy5/Xxvu2EbrAMR/wg==}
+  '@assemora/database-postgres@0.2.6':
+    resolution: {integrity: sha512-sTJek9HY8pRoL9L8D8hhbyGDLKbFtmVg7ms8FF9lOwRHC/iKaLJpOK5LY6VDx+NAZxN9iWObUzxqAMdzQtlQOg==}
 
-  '@assemora/database@0.2.5':
-    resolution: {integrity: sha512-vb0trQHFBP5woMStypa+JJVGchUREVAgjIKWUkluJWr8JOxX0UGFBPsifzrjnk0JmyUlZ5qsdnviJmnzU4J8Qw==}
+  '@assemora/database@0.2.6':
+    resolution: {integrity: sha512-xFx27GWDE+I/rFjxKfOosVsmvD1de5eMw9BD21ds1vEQoDK9lYhD6gj/wg65HteP3jUMbhG+nvC5PJLXxPd4hA==}
 
-  '@assemora/http@0.2.5':
-    resolution: {integrity: sha512-1ztvPIWgWsIv9/FXO8GXt9UXqjhedIXSqcQ8szFui7Yg6zy71ARYYbEGybjA46dGAZF0EW7AdpwhJ9FIUb8ykg==}
+  '@assemora/http@0.2.6':
+    resolution: {integrity: sha512-9cAdi0DN2fc4GvAj0DWihfO76c+kPkECIG6X4lTJpl0vMbfdA5+U0R69y2qxLUm3idGdr9fAAEsoYSPUgoGWlA==}
 
-  '@assemora/mcp@0.2.5':
-    resolution: {integrity: sha512-F3WslFf0oTaZZx6Xd0ihYLugxIRLxpKnUFJOD9mpV4hraOCQnEABfMHToaTxN58rV7FdbOmXa7D93G7ipSeViQ==}
+  '@assemora/mcp@0.2.6':
+    resolution: {integrity: sha512-AcbUbI0OsLjAhI/NnaCfdzsLYWUEINrFA/a99Jo+i0/Xr0eNtR5SCm0fgxeizGZDh7ZLoORRltLpjPmxOoaRfQ==}
 
-  '@assemora/media@0.2.5':
-    resolution: {integrity: sha512-C8IBRkIpYkjOrB0zP6lgIkiUzyL0Jo61//crsIS4uZujybpDaMxj+8FEfjtVvL0v+sXDmgNZpjOioW3Ge+e1KQ==}
+  '@assemora/media@0.2.6':
+    resolution: {integrity: sha512-N0eeIO8AEZn6vDZZrPpDy3+U+ZF9aDO/p5YRMZKVBYVyVkhqPAao8up4oOhscHSAWDDJBRqL+/TgB0L6qOwLpg==}
 
-  '@assemora/openapi@0.2.5':
-    resolution: {integrity: sha512-L1VqwHA/opR3AnF7wAf/hToOJ4RG71hlygWRKIVyCvTr1gyOwvqut9VNgeScuR4C1cTKu2hBACax+FspjX+0kw==}
+  '@assemora/openapi@0.2.6':
+    resolution: {integrity: sha512-aeEjEVoBz77RAojVOG+siZsSxKJYm+e2xxs8in5LAmNHOqPKIQ50Q3/EWKJgILgNUTsN1ILlXD5uOHrWRkE5WQ==}
 
-  '@assemora/pages@0.2.5':
-    resolution: {integrity: sha512-61ObGWnUpadjUm7WINAiJPy61OQZNax9NsxrTjPgBIs+Yd2jqEUUrvo0K9FKVfyhHsoC014MxbcAUU64FKcvWA==}
+  '@assemora/pages@0.2.6':
+    resolution: {integrity: sha512-QFj4P23iYT7M2q5AiQqbfmJSkEeXnSOITo5tRc8V1EgMq6/K1uuZLFEyoHZDqaWd5SMesBs/KXvr0Oz93/oWPw==}
 
-  '@assemora/react@0.2.5':
-    resolution: {integrity: sha512-BZ3DP+McerE8mgv0KUS1QP706WJlcTJwLRPJLQt/2hDVUWBMnhtnUtemC4TrCjN+HmYG8ZgPt+0j96EMX9w3Tw==}
+  '@assemora/react@0.2.6':
+    resolution: {integrity: sha512-hLTKfhT8TOOq6ov3fahRSNo8lcVM0rMowxa9JUxIFusOHL241k1lMwdpzg5jdK/VLkAS6T/XvisN/Krk6oHddw==}
     peerDependencies:
       react: '>=19'
 
-  '@assemora/resources@0.2.5':
-    resolution: {integrity: sha512-agqg5m9WqStCahizUPVdKwKaAIkjvmTJqc1bCpPPHxrje/ntW9nvXBl84Litil09v5nWADGjtHm66Z8wHzg9PA==}
+  '@assemora/resources@0.2.6':
+    resolution: {integrity: sha512-hYRdAQ0ml6BrL0X1VK/Ss8qPaZSkaRwsZKIN8yyDH28Zj0T1fsCXfb7pJ2e/uIjnQ18eXyQgUB/wrjDLJuJasA==}
 
-  '@assemora/revisions@0.2.5':
-    resolution: {integrity: sha512-QkV6/QncaLcSjo8AIHfn/CX8nv4YEC30Hc2wSBjZEZHlapEl6JeIaJtdOz0yZbmveMGzSwy3PYvTuPFo8UI9Ig==}
+  '@assemora/revisions@0.2.6':
+    resolution: {integrity: sha512-GpDkPAbW6n4etzAS6sjLj2w847Qu2+BqRmWHB9z9x9bcZNFn76ic+98wQpj7GF2N8Rg6mm4THtJ4d6d1iq08dg==}
 
-  '@assemora/schema@0.2.5':
-    resolution: {integrity: sha512-8IQZLRg4hdEd9tzG6Fv16PDwErsIAGrtiybArFsCYBiNWiCQ3eZuwrKaxpPI50L5JVA5bCsZdRmMNm6Gpmdlug==}
+  '@assemora/schema@0.2.6':
+    resolution: {integrity: sha512-x3qooKz3f+VIGDyQNhf9lXIqMd4eFHra1qe3aZqa/0GFDoPwKKI4RJuLNs6FFNSucXOJUZfanZJSkzbNuYoMiQ==}
 
-  '@assemora/sdk@0.2.5':
-    resolution: {integrity: sha512-nlKEx/Kzya7orcwqLdYKbz6CAWAdP+lRG63abvKK1Yn145+aEN/47QnXaK8vuWmONL0h+eGmvxXXf+WIO1Mycg==}
+  '@assemora/sdk@0.2.6':
+    resolution: {integrity: sha512-z+VXDbNPIz33TS8fvAvPRv7tPeFgIpvtq6p4n9EljgV7//IHD6JayiDWI9z7mxV4Jr+q9wEkJhZ3Hc3xHw5D1g==}
 
-  '@assemora/studio@0.2.5':
-    resolution: {integrity: sha512-K+jMIGUptLUIh/LAUKUFBLXvU2i0aVOz+5apNpCyIShYNezIQF+VSxKyP6E8vHrKwcVJE6siTj6NsI7uCz0IOA==}
+  '@assemora/studio@0.2.6':
+    resolution: {integrity: sha512-wRlLH9AqyrsPa8SucR34HOn3PBHZ3YdHB/8kU0G5hvoDZZXV8tyzzVak5oK3xqC3GyTVAB7RMWd//Ar1w3yjHg==}
 
-  '@assemora/theme@0.2.5':
-    resolution: {integrity: sha512-57AwY0kZxTmOW/eBFWy+qgDd8XsOCd8F9gR7neszQzpIHqpYQEkEUfivqgPpnMhK7MaXvMtGnGWeWywx30MK/Q==}
+  '@assemora/theme@0.2.6':
+    resolution: {integrity: sha512-CK+n7/QVS/t5E6bWGq7c+CqdexEE3C6xdFF+5WlpHmuwSnX1ylIlxBPzXOZUPwn2oJbAVxqY86i3JtO3jmsq3A==}
 
   '@biomejs/biome@2.5.10':
     resolution: {integrity: sha512-WRKXARA3kTuiV5sxqTpobJ/I0MVd4vk3pOL6wnp5az4LntFIhWTj1RWZq3DI9PCEN3lXcqy7p5aqUHzvq8AXyQ==}
@@ -622,8 +622,8 @@ packages:
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
 
-  assemora@0.2.5:
-    resolution: {integrity: sha512-Op7wlsqFg7JIt9VQfYvePy3zVlsskGJNPiK/RDDFo8mmZU8P6u3R1QVpbuKh7K9Um5ja8Nfed+DIAR/8xs/5SA==}
+  assemora@0.2.6:
+    resolution: {integrity: sha512-3EQRsUFTdho52EDypYRV2UuPlHRm/ymfqVAOfovREibwCL+5KcLdR6zcG8itRmMthg5WYmnwBmFrrTRuLda+Ww==}
 
   atomic-sleep@1.0.0:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
@@ -679,8 +679,8 @@ packages:
     resolution: {integrity: sha512-tJtZBBHA6vjIAaF6EnIaq6laBBP9aq/Y3ouVJjEfoHbRBcHBAHYcMh/w8LDrk2PvIMMq8gmopa5D4V8RmbrxGw==}
     engines: {node: '>= 0.10'}
 
-  create-assemora@0.2.5:
-    resolution: {integrity: sha512-5HFS3ZRy6fYjFiLVG0CsEwTrCh5C2opJ3DH7LpcNheR4ne5apoFaaNm7dehT0Ivm15HVD8/oxcI6wv4JKGAujA==}
+  create-assemora@0.2.6:
+    resolution: {integrity: sha512-QodOs8kzOhsaJsgXC6M6RXZSnuvu4R0gJjYMTKvBj8TZjnJJBftAD5GilXeCL42aNBENh02VMIHzIpTOQ3+i9g==}
     hasBin: true
 
   cross-spawn@7.0.6:
@@ -1456,35 +1456,35 @@ packages:
 
 snapshots:
 
-  '@assemora/audit@0.2.5':
+  '@assemora/audit@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/auth@0.2.5':
+  '@assemora/auth@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/schema': 0.2.6
       '@node-rs/argon2': 2.1.0
 
-  '@assemora/change-sets@0.2.5':
+  '@assemora/change-sets@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/cli@0.2.5':
+  '@assemora/cli@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/database': 0.2.5
-      '@assemora/database-postgres': 0.2.5
-      '@assemora/openapi': 0.2.5
-      '@assemora/schema': 0.2.5
-      '@assemora/sdk': 0.2.5
-      create-assemora: 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/database': 0.2.6
+      '@assemora/database-postgres': 0.2.6
+      '@assemora/openapi': 0.2.6
+      '@assemora/schema': 0.2.6
+      '@assemora/sdk': 0.2.6
+      create-assemora: 0.2.6
     transitivePeerDependencies:
       - '@aws-sdk/client-rds-data'
       - '@cloudflare/workers-types'
@@ -1516,21 +1516,21 @@ snapshots:
       - sql.js
       - sqlite3
 
-  '@assemora/core@0.2.5':
+  '@assemora/core@0.2.6':
     dependencies:
-      '@assemora/schema': 0.2.5
+      '@assemora/schema': 0.2.6
 
-  '@assemora/data@0.2.5':
+  '@assemora/data@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/database': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/database': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/database-postgres@0.2.5':
+  '@assemora/database-postgres@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/database': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/database': 0.2.6
+      '@assemora/schema': 0.2.6
       drizzle-orm: 0.45.2(pg@8.23.0)
       pg: 8.23.0
     transitivePeerDependencies:
@@ -1564,75 +1564,75 @@ snapshots:
       - sql.js
       - sqlite3
 
-  '@assemora/database@0.2.5':
+  '@assemora/database@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/http@0.2.5':
+  '@assemora/http@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/schema': 0.2.6
       '@fastify/cors': 11.3.0
       '@fastify/rate-limit': 11.2.0
       fastify: 5.12.1
 
-  '@assemora/mcp@0.2.5(zod@4.5.4)':
+  '@assemora/mcp@0.2.6(zod@4.5.4)':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/schema': 0.2.6
       '@modelcontextprotocol/sdk': 1.30.0(zod@4.5.4)
     transitivePeerDependencies:
       - '@cfworker/json-schema'
       - supports-color
       - zod
 
-  '@assemora/media@0.2.5':
+  '@assemora/media@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/openapi@0.2.5':
+  '@assemora/openapi@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/http': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/http': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/pages@0.2.5':
+  '@assemora/pages@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/resources': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/resources': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/react@0.2.5(react@19.2.8)':
+  '@assemora/react@0.2.6(react@19.2.8)':
     dependencies:
-      '@assemora/schema': 0.2.5
+      '@assemora/schema': 0.2.6
       react: 19.2.8
 
-  '@assemora/resources@0.2.5':
+  '@assemora/resources@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/revisions@0.2.5':
+  '@assemora/revisions@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/schema': 0.2.6
 
-  '@assemora/schema@0.2.5': {}
+  '@assemora/schema@0.2.6': {}
 
-  '@assemora/sdk@0.2.5':
+  '@assemora/sdk@0.2.6':
     dependencies:
-      '@assemora/schema': 0.2.5
+      '@assemora/schema': 0.2.6
 
-  '@assemora/studio@0.2.5':
+  '@assemora/studio@0.2.6':
     dependencies:
-      '@assemora/react': 0.2.5(react@19.2.8)
-      '@assemora/schema': 0.2.5
+      '@assemora/react': 0.2.6(react@19.2.8)
+      '@assemora/schema': 0.2.6
       '@fontsource-variable/inter': 5.3.0
       '@fontsource/jetbrains-mono': 5.3.0
       '@tanstack/react-query': 5.102.5(react@19.2.8)
@@ -1641,11 +1641,11 @@ snapshots:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
-  '@assemora/theme@0.2.5':
+  '@assemora/theme@0.2.6':
     dependencies:
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/schema': 0.2.5
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/schema': 0.2.6
 
   '@biomejs/biome@2.5.10':
     optionalDependencies:
@@ -1984,21 +1984,21 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
-  assemora@0.2.5(zod@4.5.4):
+  assemora@0.2.6(zod@4.5.4):
     dependencies:
-      '@assemora/audit': 0.2.5
-      '@assemora/auth': 0.2.5
-      '@assemora/change-sets': 0.2.5
-      '@assemora/core': 0.2.5
-      '@assemora/data': 0.2.5
-      '@assemora/database': 0.2.5
-      '@assemora/http': 0.2.5
-      '@assemora/mcp': 0.2.5(zod@4.5.4)
-      '@assemora/media': 0.2.5
-      '@assemora/openapi': 0.2.5
-      '@assemora/revisions': 0.2.5
-      '@assemora/schema': 0.2.5
-      '@assemora/theme': 0.2.5
+      '@assemora/audit': 0.2.6
+      '@assemora/auth': 0.2.6
+      '@assemora/change-sets': 0.2.6
+      '@assemora/core': 0.2.6
+      '@assemora/data': 0.2.6
+      '@assemora/database': 0.2.6
+      '@assemora/http': 0.2.6
+      '@assemora/mcp': 0.2.6(zod@4.5.4)
+      '@assemora/media': 0.2.6
+      '@assemora/openapi': 0.2.6
+      '@assemora/revisions': 0.2.6
+      '@assemora/schema': 0.2.6
+      '@assemora/theme': 0.2.6
     transitivePeerDependencies:
       - '@cfworker/json-schema'
       - supports-color
@@ -2056,7 +2056,7 @@ snapshots:
       object-assign: 4.1.1
       vary: 1.1.2
 
-  create-assemora@0.2.5: {}
+  create-assemora@0.2.6: {}
 
   cross-spawn@7.0.6:
     dependencies:
