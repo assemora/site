@@ -2,7 +2,7 @@
   "name": "assemora-site",
   "version": "0.0.0",
   "private": true,
-  "description": "assemora.com — built with Assemora, and deployed from this repository",
+  "description": "assemora.com \u2014 built with Assemora, and deployed from this repository",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "db:generate": "assemora db:generate",
     "db:migrate": "assemora db:migrate",
     "db:status": "assemora db:status",
-    "build": "vite build --config app/vite.config.ts",
+    "build": "node app/copy-guide.mjs && vite build --config app/vite.config.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "biome check",
     "format": "biome check --write"
@@ -29,6 +29,7 @@
     "@assemora/schema": "^0.2.5",
     "@assemora/studio": "^0.2.5",
     "assemora": "^0.2.5",
+    "marked": "18.0.11",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

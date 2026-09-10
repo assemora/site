@@ -4,3 +4,6 @@ dist/
 .env
 .DS_Store
 *.tsbuildinfo
+
+# Machine-made by app/copy-guide.mjs; the guide lives in assemora/assemora.
+app/guide/
