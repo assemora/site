@@ -113,6 +113,8 @@ const brand = (app: Application) =>
       line: '#e2e4ea',
       hairline: '#eceef2',
       'line-on-ink': '#3a3a3a',
+      // The border a terminal takes on the deepest ground: quieter than a section's.
+      'line-on-deep': '#2a2a2a',
       'amber-tint': '#fbf3dc',
       'amber-text': '#8a6a1f',
       'red-tint': '#fdf1f1',

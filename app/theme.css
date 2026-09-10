@@ -325,7 +325,6 @@ main > .assemora-design > * {
 .footer {
   margin-top: auto;
   border-top: 1px solid var(--line);
-  background: var(--panel);
 }
 
 .footer-inner {
@@ -454,7 +453,11 @@ pre {
   white-space: nowrap;
 }
 
-.lead .inline {
+/* White on paper, paper on white: the chip has to be visible against whichever
+   ground the section is drawn on. */
+.packages .inline,
+.declaration .inline,
+.comparison .inline {
   background: var(--paper);
 }
 
@@ -479,7 +482,7 @@ pre {
 
 .code-block-dark {
   background: var(--ink-deep);
-  border: 1px solid var(--line-on-ink);
+  border: 1px solid var(--line-on-deep);
 }
 
 .terminal {
@@ -635,7 +638,7 @@ pre {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 18px 28px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--hairline);
   font-size: var(--text-sm);
 }
@@ -673,7 +676,7 @@ pre {
 }
 
 .panel-body {
-  padding: 28px;
+  padding: 18px;
   font-family: var(--font-mono);
   font-size: 13px;
   line-height: var(--leading-relaxed);
@@ -696,22 +699,31 @@ pre {
   color: var(--ink-soft);
 }
 
+/*
+ * The three rows are flush: a diff is one object, and a gap between its lines is a
+ * gap in the thing being shown.
+ *
+ * `margin: 0` alone did not do it. `.panel-body p` sets a 6px bottom margin on every
+ * paragraph in the panel and outranks a single class, so the rows kept it and the
+ * white showed through between them. Naming the parent is what makes the intent win
+ * rather than merely be stated.
+ */
 .diff {
   margin: 18px 0;
-  border: 1px solid var(--hairline);
+  border: 1px solid var(--line);
   border-radius: 10px;
   overflow: hidden;
 }
 
-.diff-label {
-  padding: 8px 12px;
+.panel-body .diff-label {
+  padding: 6px 12px;
   background: var(--paper);
   color: var(--ink-mute);
   margin: 0;
 }
 
-.diff-line {
-  padding: 6px 12px;
+.panel-body .diff-line {
+  padding: 4px 12px;
   margin: 0;
 }
 
@@ -733,11 +745,14 @@ pre {
   color: var(--red);
 }
 
+/* The footer has a ground of its own: it is where the panel stops describing and
+   starts asking. */
 .panel-foot {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding: 18px 28px;
+  padding: 14px 18px;
+  background: #fafafb;
   border-top: 1px solid var(--hairline);
 }
 
@@ -854,7 +869,7 @@ pre {
 
 .card[data-tone="ink"] .card-code {
   background: var(--ink-deep);
-  border: 1px solid var(--line-on-ink);
+  border: 1px solid var(--line-on-deep);
 }
 
 /* Counting is the card's own, so a section that numbers nothing looks as it did. */
@@ -1283,7 +1298,7 @@ pre {
   justify-content: center;
   border: 1px solid var(--line-on-ink);
   border-radius: var(--radius-full);
-  padding: 11px 19px;
+  padding: 12px 20px;
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   background: transparent;
@@ -1299,7 +1314,7 @@ pre {
   margin: 0;
   padding: 22px 24px;
   border-radius: 16px;
-  border: 1px solid var(--line-on-ink);
+  border: 1px solid var(--line-on-deep);
   background: var(--ink-deep);
   color: var(--hairline);
   font-size: 14px;
